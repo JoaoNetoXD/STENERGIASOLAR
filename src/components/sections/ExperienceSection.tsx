@@ -1,0 +1,241 @@
+import React, { useEffect, useRef, useState } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { Button } from '../ui/Button'
+import { ShieldCheck, Zap, Star } from 'lucide-react'
+import { Card } from '../ui/Card'
+import bgExperience from '../../assets/05 SEÇÃO.jpg'
+import vid1 from '../../assets/video 01.MOV'
+import vid2 from '../../assets/video 02.MOV'
+import vid3 from '../../assets/video 03.MOV'
+
+function AnimatedNumber({ value, duration = 2000 }: { value: number, duration?: number }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+          let startTimestamp: number;
+          const step = (timestamp: number) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            const ease = 1 - Math.pow(1 - progress, 4); // easeOutQuart
+            if (ref.current) {
+              ref.current.textContent = Math.floor(ease * value).toString();
+            }
+            if (progress < 1) {
+              window.requestAnimationFrame(step);
+            } else if (ref.current) {
+              ref.current.textContent = value.toString();
+            }
+          };
+          window.requestAnimationFrame(step);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, [value, duration, hasAnimated]);
+
+  return <span ref={ref}>0</span>;
+}
+
+export function ExperienceSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  
+  // Sincronização do Sol com o Scroll (Parallax)
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+
+  const sunY = useTransform(scrollYProgress, [0, 1], ["-10%", "80%"]);
+  const sunScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1.2, 0.8]);
+  const sunRotate = useTransform(scrollYProgress, [0, 1], [0, 90]);
+
+  return (
+    <section ref={sectionRef} className="relative w-full bg-[#070b10] py-16 sm:py-20 md:py-24 z-20" id="sobre">
+
+      {/* Background de Alta Qualidade */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#0b141a] via-[#070b10] to-[#040608] pointer-events-none" />
+
+      {/* Background Mesh/Grid Tecnológico Sutil com Fade Real */}
+      <div
+        className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none mix-blend-overlay opacity-50"
+        style={{
+          maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
+          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)'
+        }}
+      />
+
+      {/* EFEITO DO SOL CARACTERIZADO EM PARALLAX */}
+      <motion.div
+        className="absolute -right-[380px] sm:-right-[100px] md:-right-[5%] lg:right-[2%] top-[5%] sm:top-[10%] w-[600px] h-[600px] pointer-events-none z-0 flex items-center justify-center transform-gpu opacity-50 sm:opacity-100"
+        style={{ y: sunY, scale: sunScale, rotate: sunRotate }}
+      >
+        {/* Glow Extenso de Fundo */}
+        <div className="absolute w-[800px] h-[800px] bg-[#ff8a00]/20 rounded-full blur-[140px] mix-blend-screen" />
+        
+        {/* Halo Orbital Laranja */}
+        <div className="absolute w-[350px] h-[350px] border-[4px] border-[#ff8a00]/40 rounded-full blur-[8px] mix-blend-screen" />
+
+        {/* Flares (Raios Diretos) */}
+        <div className="absolute w-[800px] h-[4px] bg-gradient-to-r from-transparent via-white/50 to-transparent blur-[2px] mix-blend-screen" />
+        <div className="absolute w-[4px] h-[800px] bg-gradient-to-b from-transparent via-white/50 to-transparent blur-[2px] mix-blend-screen" />
+        <div className="absolute w-[800px] h-[4px] bg-gradient-to-r from-transparent via-[#ffdb70]/30 to-transparent blur-[4px] mix-blend-screen rotate-45" />
+        <div className="absolute w-[4px] h-[800px] bg-gradient-to-b from-transparent via-[#ffdb70]/30 to-transparent blur-[4px] mix-blend-screen rotate-45" />
+
+        {/* Coroa Solar Translúcida */}
+        <div className="absolute w-[220px] h-[220px] bg-[#ffdb70] opacity-70 rounded-full blur-[30px] mix-blend-screen" />
+
+        {/* Núcleo Real do Sol (Corpo Celeste) */}
+        <div className="absolute w-[120px] h-[120px] bg-[#ffffff] rounded-full blur-[3px] shadow-[0_0_80px_#ffffff,_0_0_120px_#ffdb70,_0_0_200px_#ff8a00]" />
+      </motion.div>
+
+      {/* EFEITO LUZ DE PREENCHIMENTO */}
+      <div className="absolute -bottom-[10%] -left-[10%] w-[600px] h-[600px] bg-blue-500/5 blur-[150px] rounded-full pointer-events-none z-0" />
+
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12 items-center">
+
+          {/* Esquerda: Conteúdo e Estatísticas */}
+          <div data-anim="fade-right">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="h-[2px] w-8 bg-primary rounded-full shadow-[0_0_8px_rgba(249,115,22,0.8)]"></div>
+              <span className="text-primary font-bold text-xs sm:text-sm tracking-[0.2em] uppercase block">
+                Nossa História
+              </span>
+            </div>
+            <h2 className="font-heading font-black text-4xl sm:text-5xl md:text-[3.5rem] text-white mb-6 leading-[1.1] tracking-tight">
+              A solidez da <br className="hidden sm:block" />
+              <span className="text-gradient-orange">ST Energia</span>
+            </h2>
+            <p className="text-zinc-300 text-lg mb-10 leading-relaxed border-l-2 border-primary/50 pl-5 py-1 bg-gradient-to-r from-primary/5 to-transparent">
+              Mais de duas décadas entregando economia e sustentabilidade para empresas e famílias em todo o Brasil. Nossa equipe 100% própria atua em infraestrutura sólida, acompanhando você da consultoria à ativação.
+            </p>
+
+            {/* Estatísticas Numéricas em Cards Premium */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
+              {/* Card 1 */}
+              <div className="bg-[#111a20] border border-white/5 rounded-2xl p-6 flex flex-col items-center sm:items-start text-center sm:text-left shadow-2xl relative overflow-hidden group hover:border-primary/40 hover:bg-[#162129] transition-all duration-500">
+                <div className="absolute -right-6 -bottom-6 w-24 h-24 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/30 transition-all duration-500 pointer-events-none"></div>
+                <div className="absolute top-0 left-0 w-[2px] h-0 bg-primary group-hover:h-full transition-all duration-500 ease-out"></div>
+                <div className="font-heading font-black text-4xl sm:text-5xl text-white mb-1 flex items-end gap-1 relative z-10 transition-transform duration-500 group-hover:-translate-y-1">
+                  <AnimatedNumber value={30} /><span className="text-lg sm:text-xl text-primary font-bold mb-1">Anos</span>
+                </div>
+                <p className="text-xs sm:text-sm font-semibold text-zinc-400 relative z-10 tracking-wide uppercase">De Histórico</p>
+              </div>
+
+              {/* Card 2 */}
+              <div className="bg-[#111a20] border border-white/5 rounded-2xl p-6 flex flex-col items-center sm:items-start text-center sm:text-left shadow-2xl relative overflow-hidden group hover:border-primary/40 hover:bg-[#162129] transition-all duration-500">
+                <div className="absolute -right-6 -top-6 w-32 h-32 bg-primary/10 rounded-full blur-2xl group-hover:bg-primary/20 transition-all duration-500 pointer-events-none"></div>
+                <div className="absolute top-0 w-0 h-[2px] right-0 bg-primary group-hover:w-full transition-all duration-500 ease-out"></div>
+                <div className="font-heading font-black text-4xl sm:text-5xl text-white mb-1 flex items-end gap-1 relative z-10 transition-transform duration-500 group-hover:-translate-y-1">
+                  <AnimatedNumber value={2000} duration={2500} /><span className="text-2xl sm:text-3xl text-primary font-bold mb-1">+</span>
+                </div>
+                <p className="text-xs sm:text-sm font-semibold text-zinc-400 relative z-10 tracking-wide uppercase">Projetos Ativos</p>
+              </div>
+
+              {/* Card 3 */}
+              <div className="bg-[#111a20] border border-white/5 rounded-2xl p-6 flex flex-col items-center sm:items-start text-center sm:text-left shadow-2xl relative overflow-hidden group hover:border-primary/40 hover:bg-[#162129] transition-all duration-500">
+                <div className="absolute -left-6 -bottom-6 w-24 h-24 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/30 transition-all duration-500 pointer-events-none"></div>
+                <div className="absolute bottom-0 right-0 w-[2px] h-0 bg-primary group-hover:h-full transition-all duration-500 ease-out"></div>
+                <div className="font-heading font-black text-4xl sm:text-5xl text-white mb-1 flex items-center gap-1 relative z-10 transition-transform duration-500 group-hover:-translate-y-1">
+                  4.<AnimatedNumber value={8} duration={1500} /><Star size={24} className="text-primary fill-primary ml-1 drop-shadow-[0_0_10px_rgba(249,115,22,0.8)]" />
+                </div>
+                <p className="text-xs sm:text-sm font-semibold text-zinc-400 relative z-10 tracking-wide uppercase">Avaliação Média</p>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-center sm:justify-start gap-6">
+              <a href="https://wa.me/5598999999999?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20falar%20com%20um%20consultor." target="_blank" rel="noreferrer" className="w-full sm:w-auto">
+                <Button variant="primary" className="uppercase w-full sm:w-auto text-xs sm:text-sm tracking-widest px-6 sm:px-10 py-4 font-bold rounded-md animate-pulse-glow">
+                  Falar com um Consultor
+                </Button>
+              </a>
+            </div>
+          </div>
+
+          {/* Direita: Vídeos Institucionais / Imagem Equipe em Collage */}
+          <div
+            data-anim="fade-left"
+            className="relative h-[450px] sm:h-[600px] w-full rounded-2xl overflow-hidden shadow-2xl group cursor-pointer border border-border/50"
+          >
+            {/* Grid Collage */}
+            <div className="grid grid-cols-2 grid-rows-2 gap-2 w-full h-full p-2 bg-background/50 backdrop-blur-sm">
+              <div className="col-span-1 row-span-2 relative rounded-xl overflow-hidden">
+                <video
+                  src={vid1}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              <div className="col-span-1 row-span-1 relative rounded-xl overflow-hidden">
+                <video
+                  src={vid2}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              <div className="col-span-1 row-span-1 relative rounded-xl overflow-hidden">
+                <video
+                  src={vid3}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+            </div>
+
+            {/* Overlays Escurecidos e Vignette */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,rgba(0,0,0,0.7)_100%)] bg-black/20 group-hover:bg-black/10 transition-colors pointer-events-none rounded-2xl" />
+
+            {/* Play Button Pulsante (Mais premium) */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="relative flex items-center justify-center">
+                <div className="absolute w-24 h-24 bg-primary/50 rounded-full animate-[ping_3s_ease-out_infinite]" />
+                <div className="absolute w-32 h-32 bg-primary/20 rounded-full animate-[ping_3s_ease-out_infinite]" style={{ animationDelay: '1s' }} />
+                <div className="relative w-20 h-20 bg-primary/90 backdrop-blur-md border-[2px] border-white/20 rounded-full flex items-center justify-center text-white shadow-[0_0_40px_rgba(249,115,22,0.6)] group-hover:bg-primary transition-all duration-300 group-hover:scale-110 z-10">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" className="ml-1 drop-shadow-md">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            {/* Label Inferior (Pill style premium) */}
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-max max-w-[90%] pointer-events-none">
+              <div className="bg-black/40 backdrop-blur-xl border border-white/10 px-5 sm:px-6 py-3 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.5)] flex items-center gap-3">
+                 <div className="relative flex items-center justify-center w-2.5 h-2.5">
+                   <span className="absolute inline-flex w-full h-full rounded-full bg-primary opacity-75 animate-ping"></span>
+                   <span className="relative inline-flex rounded-full w-2.5 h-2.5 bg-primary"></span>
+                 </div>
+                 <h3 className="font-heading font-bold text-xs sm:text-sm text-zinc-100 tracking-wider uppercase drop-shadow-md">
+                   Nossa Estrutura Operacional
+                 </h3>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  )
+}

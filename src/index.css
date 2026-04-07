@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300..700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 25% 12%;
+    --foreground: 220 15% 93%;
+    --card: 220 22% 15%;
+    --card-foreground: 220 15% 93%;
+    --popover: 220 22% 15%;
+    --popover-foreground: 220 15% 93%;
+    --primary: 30 95% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 18% 20%;
+    --secondary-foreground: 220 15% 85%;
+    --muted: 220 16% 18%;
+    --muted-foreground: 220 15% 90%;
+    --accent: 25 85% 45%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 16% 22%;
+    --input: 220 16% 22%;
+    --ring: 30 95% 50%;
+    --radius: 0.5rem;
+    
+    /* Custom */
+    --orange-glow: 35 100% 58%;
+    --charcoal: 220 25% 8%;
+    --steel: 220 12% 35%;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+  }
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+@layer utilities {
+  .text-gradient-orange {
+    background-image: linear-gradient(135deg, hsl(40, 95%, 55%), hsl(25, 100%, 50%));
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  
+  .bg-gradient-dark {
+    background: linear-gradient(180deg, hsl(210, 29%, 14%) 0%, hsl(210, 29%, 8%) 100%);
+  }
+  
+  .bg-gradient-card {
+    background: linear-gradient(135deg, hsl(210, 25%, 17%) 0%, hsl(210, 25%, 14%) 100%);
+  }
+  
+  .overlay-dark {
+    background: linear-gradient(180deg, hsl(220, 25%, 12% / 0.7) 0%, hsl(220, 25%, 8% / 0.9) 100%);
+  }
+
+  /* High Quality Premium Textures */
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .bg-grid-tech {
+    background-size: 50px 50px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  }
+
+  .bg-dot-tech {
+    background-size: 32px 32px;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.08) 1.5px, transparent 1.5px);
+  }
+
+  .border-glow-orange {
+    border-color: hsl(24, 95%, 53% / 0.3);
+  }
+  
+  .shadow-orange {
+    box-shadow: 0 0 30px hsl(24, 95%, 53% / 0.15);
+  }
+
+  /* --- Scroll Animations Base Logic --- */
+  [data-anim] {
+    opacity: 0;
+    will-change: transform, opacity;
+  }
+  
+  [data-anim].is-visible {
+    opacity: 1;
+  }
+  
+  /* Tipo: fade-up */
+  [data-anim="fade-up"] {
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1), transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  [data-anim="fade-up"].is-visible {
+    transform: translateY(0);
+  }
+  
+  /* Tipo: fade-left */
+  [data-anim="fade-left"] {
+    transform: translateX(40px);
+    transition: opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1), transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  [data-anim="fade-left"].is-visible {
+    transform: translateX(0);
+  }
+  
+  /* Tipo: fade-right */
+  [data-anim="fade-right"] {
+    transform: translateX(-40px);
+    transition: opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1), transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  [data-anim="fade-right"].is-visible {
+    transform: translateX(0);
+  }
+  
+  /* Tipo: stagger containers and children */
+  [data-anim="stagger-container"] {
+    opacity: 1; /* Container doesn't hide */
+  }
+  [data-anim="stagger-item"] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s cubic-bezier(0.19, 1, 0.22, 1), transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  [data-anim="stagger-container"].is-visible [data-anim="stagger-item"] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (min-width: 768px) {
+    /* Desktop: enter from left to right (using translate X optionally, or keeping Y. the delay handles the direction) */
+    [data-anim="stagger-container"].is-visible.desktop-left-right [data-anim="stagger-item"] {
+      animation-name: desktopCascade;
+      animation-duration: 0.6s;
+      animation-fill-mode: both;
+      animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+      /* animation-delay is set inline or via nth-child */
+    }
+    @keyframes desktopCascade {
+      0% { opacity: 0; transform: translateX(-30px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+  }
+  @media (max-width: 767px) {
+    /* Mobile: enter from bottom to top sequentially */
+    [data-anim="stagger-container"].is-visible.mobile-bottom-top [data-anim="stagger-item"] {
+      animation-name: mobileCascade;
+      animation-duration: 0.6s;
+      animation-fill-mode: both;
+      animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    @keyframes mobileCascade {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+  }
+
+  /* Shimmer animation for result cards */
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  /* Float animation for CTA icons */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Pulse glow for CTA buttons */
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(249, 115, 22, 0.3); }
+    50% { box-shadow: 0 0 40px rgba(249, 115, 22, 0.6), 0 0 60px rgba(249, 115, 22, 0.2); }
+  }
+  .animate-pulse-glow {
+    animation: pulse-glow 2.5s ease-in-out infinite;
+  }
+
+  /* Mobile hero responsiveness */
+  @media (max-width: 374px) {
+    .hero-title {
+      font-size: 2.8rem !important;
+    }
+  }
+}
