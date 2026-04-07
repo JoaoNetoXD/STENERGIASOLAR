@@ -68,7 +68,7 @@ export function HeroSection() {
             </div>
 
             <div data-anim="fade-up" style={{ transitionDelay: '0.6s' }}>
-              <p className="text-white/95 text-[16px] sm:text-lg md:text-xl max-w-[96%] sm:max-w-xl mx-auto lg:mx-0 mb-8 md:mb-12 leading-[1.65] font-medium drop-shadow-md">
+              <p className="text-white/95 text-[16px] sm:text-lg md:text-xl max-w-[96%] sm:max-w-xl mx-auto lg:mx-0 mb-8 md:mb-12 leading-[1.65] font-medium drop-shadow-md border-l-2 border-primary/50 text-left pl-5 py-2 bg-gradient-to-r from-primary/5 to-transparent">
                 Transforme o sol em <strong className="text-white font-black text-[17px] sm:text-[19px] md:text-[22px]">economia real</strong>. Nossos consultores fazem todo o processo por você — do financiamento até a ativação da sua usina.
               </p>
             </div>

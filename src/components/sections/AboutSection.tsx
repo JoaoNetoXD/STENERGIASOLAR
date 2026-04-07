@@ -5,7 +5,18 @@ import { CheckCircle2 } from 'lucide-react'
 
 export function AboutSection() {
   return (
-    <section id="sobre" className="py-16 sm:py-20 md:py-24 bg-background relative overflow-hidden">
+    <section id="sobre" className="py-16 sm:py-20 md:py-24 bg-[#070b10] relative overflow-hidden w-full">
+      {/* Background de Alta Qualidade */}
+      <div className="absolute inset-0 z-0 bg-[#040608] pointer-events-none" />
+
+      {/* Background Mesh/Grid Tecnológico Sutil com Fade Real */}
+      <div
+        className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none mix-blend-overlay opacity-50"
+        style={{
+          maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
+          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)'
+        }}
+      />
       <div className="container mx-auto px-4 sm:px-6 md:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           

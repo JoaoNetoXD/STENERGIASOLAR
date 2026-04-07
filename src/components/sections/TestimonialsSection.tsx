@@ -27,13 +27,16 @@ const depoimentos = [
 
 export function TestimonialsSection() {
   return (
-    <section className="py-16 sm:py-20 md:py-24 relative bg-background w-full">
-      {/* Background Mesh/Grid Tecnológico Sutil com Fade Real */}
+    <section className="py-16 sm:py-20 md:py-24 relative bg-[#070b10] w-full">
+      {/* Background de Alta Qualidade */}
+      <div className="absolute inset-0 z-0 bg-[#040608] pointer-events-none" />
+
+      {/* Background Mesh/Grid Quadriculado mais evidente */}
       <div
-        className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"
+        className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none opacity-80"
         style={{
-          maskImage: 'linear-gradient(to bottom, transparent, black 5%, black 95%, transparent)',
-          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 5%, black 95%, transparent)'
+          maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
+          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)'
         }}
       />
 

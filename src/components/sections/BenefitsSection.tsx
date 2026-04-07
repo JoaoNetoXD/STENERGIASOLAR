@@ -29,8 +29,19 @@ const progressBars = [
 
 export function BenefitsSection() {
   return (
-    <section className="py-16 sm:py-20 bg-background relative z-10">
-      <div className="container mx-auto px-4 sm:px-6 md:px-8">
+    <section className="py-16 sm:py-20 bg-[#070b10] relative w-full z-10">
+      {/* Background de Alta Qualidade */}
+      <div className="absolute inset-0 z-0 bg-[#040608] pointer-events-none" />
+
+      {/* Background Mesh/Grid Tecnológico Sutil com Fade Real */}
+      <div
+        className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none mix-blend-overlay opacity-50"
+        style={{
+          maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
+          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)'
+        }}
+      />
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
         
         {/* Benefícios Icons */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-20">

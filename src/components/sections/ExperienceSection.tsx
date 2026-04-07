@@ -61,23 +61,23 @@ export function ExperienceSection() {
   const sunRotate = useTransform(scrollYProgress, [0, 1], [0, 90]);
 
   return (
-    <section ref={sectionRef} className="relative w-full bg-[#070b10] py-16 sm:py-20 md:py-24 z-20" id="sobre">
+    <section ref={sectionRef} className="relative w-full pt-16 pb-10 sm:pt-20 sm:pb-12 md:pt-24 md:pb-16" id="sobre">
 
-      {/* Background de Alta Qualidade */}
+      {/* Extensão do background não é mais necessária pois removemos o z-20 e isolamento de contexto */}
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#0b141a] via-[#070b10] to-[#040608] pointer-events-none" />
 
       {/* Background Mesh/Grid Tecnológico Sutil com Fade Real */}
       <div
         className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none mix-blend-overlay opacity-50"
         style={{
-          maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
-          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)'
+          maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 70%, transparent)',
+          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 70%, transparent)'
         }}
       />
 
       {/* EFEITO DO SOL CARACTERIZADO EM PARALLAX */}
       <motion.div
-        className="absolute -right-[380px] sm:-right-[100px] md:-right-[5%] lg:right-[2%] top-[5%] sm:top-[10%] w-[600px] h-[600px] pointer-events-none z-0 flex items-center justify-center transform-gpu opacity-50 sm:opacity-100"
+        className="absolute -right-[380px] sm:-right-[100px] md:-right-[5%] lg:right-[2%] top-[5%] sm:top-[10%] w-[600px] h-[600px] pointer-events-none z-[5] mix-blend-screen flex items-center justify-center transform-gpu opacity-50 sm:opacity-100"
         style={{ y: sunY, scale: sunScale, rotate: sunRotate }}
       >
         {/* Glow Extenso de Fundo */}

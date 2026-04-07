@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, HelpCircle } from 'lucide-react'
-import bgFaq from '../../assets/03 SEÇÃO.jpg'
+import bgFaq from '../../assets/IMAGEM FUNDO 10.jpg'
 
 const faqs = [
   {
@@ -34,15 +34,21 @@ export function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   return (
-    <section className="py-16 sm:py-20 md:py-24 relative bg-background w-full" id="faq">
-      {/* Background Mesh/Grid Tecnológico Sutil com Fade Real */}
-      <div
-        className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"
-        style={{
-          maskImage: 'linear-gradient(to bottom, transparent, black 5%, black 95%, transparent)',
-          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 5%, black 95%, transparent)'
-        }}
-      />
+    <section className="py-16 sm:py-20 md:py-24 relative bg-[#070b10] w-full" id="faq">
+      {/* Background Image with Dark Overlay and Section Smoothing Fades */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <img 
+          src={bgFaq} 
+          alt="ST Energia Background" 
+          className="w-full h-full object-cover object-center opacity-80" 
+        />
+        {/* Overlay escuro sem blur para preservar total nitidez da imagem */}
+        <div className="absolute inset-0 bg-black/80 md:bg-black/50" />
+        
+        {/* Smooth fades at borders to blend perfectly with other sections (#040608) */}
+        <div className="absolute top-0 left-0 w-full h-32 md:h-48 bg-gradient-to-b from-[#040608] via-[#040608]/80 to-transparent pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-full h-32 md:h-48 bg-gradient-to-t from-[#040608] via-[#040608]/80 to-transparent pointer-events-none" />
+      </div>
       
       {/* Subtle glow */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 blur-[120px] rounded-full pointer-events-none z-0" />

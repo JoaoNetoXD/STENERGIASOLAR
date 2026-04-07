@@ -1,6 +1,5 @@
 import React from 'react'
 import { SectionHeader } from '../ui/SectionHeader'
-
 const features = [
   {
     image: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=2070&auto=format&fit=crop',
@@ -26,21 +25,18 @@ const features = [
 
 export function DiferenciaisSection() {
   return (
-    <section className="py-16 sm:py-20 md:py-24 relative bg-background w-full">
-      {/* Background Topográfico Sutil com bordas esfumaçadas (fade) */}
+    <section className="py-16 sm:py-20 md:py-24 relative bg-[#070b10] w-full">
+      {/* Background de Alta Qualidade */}
+      <div className="absolute inset-0 z-0 bg-[#040608] pointer-events-none" />
+
+      {/* Background Dots/Pontilhado Tecnológico */}
       <div
-        className="absolute inset-0 z-0 pointer-events-none"
+        className="absolute inset-0 z-0 bg-[radial-gradient(#ffffff18_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none opacity-80"
         style={{
           maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
           WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)'
         }}
-      >
-        <img
-          src="https://images.unsplash.com/photo-1620121692029-d088224ddc74?q=80&w=2064&auto=format&fit=crop"
-          alt="Textura Topográfica Abstrata"
-          className="w-full h-full object-cover opacity-[0.03] grayscale mix-blend-screen"
-        />
-      </div>
+      />
 
       {/* Glow Radial central para atrair o olhar */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] h-[600px] bg-primary/10 blur-[130px] rounded-[100%] pointer-events-none z-0" />
@@ -59,7 +55,7 @@ export function DiferenciaisSection() {
               key={index}
               data-anim="stagger-item"
               style={{ animationDelay: `${index * 0.1}s` }}
-              className="relative overflow-hidden h-[380px] w-full rounded-2xl group shadow-md hover:shadow-xl transition-all duration-300"
+              className="relative overflow-hidden h-[240px] sm:h-[280px] md:h-[380px] w-full rounded-2xl group shadow-md hover:shadow-xl transition-all duration-300"
             >
               {/* Imagem de Fundo real */}
               <img

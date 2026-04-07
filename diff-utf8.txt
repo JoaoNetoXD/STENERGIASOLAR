@@ -1,0 +1,496 @@
+﻿diff --git a/src/App.tsx b/src/App.tsx
+index 8ac1cb9..9537cef 100644
+--- a/src/App.tsx
++++ b/src/App.tsx
+@@ -9,7 +9,6 @@ import { ContactSection } from './components/sections/ContactSection'
+ import { InvestReasonsSection } from './components/sections/InvestReasonsSection'
+ import { SolutionsSection } from './components/sections/SolutionsSection'
+ import { SustainabilitySection } from './components/sections/SustainabilitySection'
+-import { SectionDivider } from './components/ui/SectionDivider'
+ import { Footer } from './components/Footer'
+ import { useScrollAnimation } from './hooks/useScrollAnimation'
+ import { Helmet } from 'react-helmet-async'
+@@ -18,7 +17,7 @@ function App() {
+   useScrollAnimation();
+   
+   return (
+-    <div className="min-h-screen bg-background text-foreground font-sans overflow-x-hidden selection:bg-primary/30 selection:text-primary">
++    <div className="min-h-screen bg-[#040608] text-foreground font-sans overflow-x-hidden selection:bg-primary/30 selection:text-primary">
+       <Helmet>
+         <title>ST Energia - Sistemas de Energia Solar Fotovoltaicos</title>
+         <meta name="description" content="Mais de 30 anos de infraestrutura sólida e 2000 projetos entregues. Somos a maior referência em transição energética do Norte e Nordeste." />
+@@ -39,24 +38,20 @@ function App() {
+         {/* Categoria de Soluções Interativas */}
+         <SolutionsSection />
+ 
+-        {/* 4 - Por Que Nós? (Diferenciais) */}
+-        <DiferenciaisSection />
+-
+         {/* Bancos Parceiros de Financiamento */}
+         <BanksSection />
+ 
++        {/* 4 - Por Que Nós? (Diferenciais) */}
++        <DiferenciaisSection />
++
+         {/* Sustainability Banner */}
+         <SustainabilitySection />
+ 
+         {/* 7 - Prova Social WhatsApp */}
+         <TestimonialsSection />
+ 
+-        <SectionDivider />
+-
+         {/* 8 - FAQ / Objeções */}
+         <FaqSection />
+-
+-        <SectionDivider />
+         
+         {/* 9 - CTA Magnet (Banner vibrante) */}
+         <ContactSection />
+diff --git a/src/assets/IMAGEM FUNDO 12.jpg b/src/assets/IMAGEM FUNDO 12.jpg
+index 9923ce0..270ab96 100644
+Binary files a/src/assets/IMAGEM FUNDO 12.jpg and b/src/assets/IMAGEM FUNDO 12.jpg differ
+diff --git a/src/components/sections/AboutSection.tsx b/src/components/sections/AboutSection.tsx
+index 2712ac3..c1ea6b5 100644
+--- a/src/components/sections/AboutSection.tsx
++++ b/src/components/sections/AboutSection.tsx
+@@ -5,7 +5,18 @@ import { CheckCircle2 } from 'lucide-react'
+ 
+ export function AboutSection() {
+   return (
+-    <section id="sobre" className="py-16 sm:py-20 md:py-24 bg-background relative overflow-hidden">
++    <section id="sobre" className="py-16 sm:py-20 md:py-24 bg-[#070b10] relative overflow-hidden w-full">
++      {/* Background de Alta Qualidade */}
++      <div className="absolute inset-0 z-0 bg-[#040608] pointer-events-none" />
++
++      {/* Background Mesh/Grid Tecnológico Sutil com Fade Real */}
++      <div
++        className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none mix-blend-overlay opacity-50"
++        style={{
++          maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
++          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)'
++        }}
++      />
+       <div className="container mx-auto px-4 sm:px-6 md:px-8">
+         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+           
+diff --git a/src/components/sections/BanksSection.tsx b/src/components/sections/BanksSection.tsx
+index e1b7931..d9aceeb 100644
+--- a/src/components/sections/BanksSection.tsx
++++ b/src/components/sections/BanksSection.tsx
+@@ -5,7 +5,7 @@ import bank2 from '../../assets/2.png'
+ import bank3 from '../../assets/3.png'
+ import bank4 from '../../assets/4.png'
+ import bank5 from '../../assets/5.png'
+-
++import bgBanks from '../../assets/IMAGEM FUNDO 12.jpg'
+ const banks = [
+   { id: 1, src: bank1, alt: 'Santander' },
+   { id: 2, src: bank2, alt: 'Sicredi' },
+@@ -19,7 +19,23 @@ export function BanksSection() {
+   const marqueeBanks = [...banks, ...banks, ...banks, ...banks];
+ 
+   return (
+-    <section className="py-16 sm:py-20 md:py-24 bg-background relative">
++    <section className="py-16 sm:py-20 md:py-24 bg-[#070b10] relative w-full">
++      {/* Background Image with Dark Overlay and Section Smoothing Fades */}
++      <div className="absolute inset-0 z-0 overflow-hidden">
++        <img 
++          src={bgBanks} 
++          alt="Melhores Taxas ST Energia" 
++          className="w-full h-full object-cover object-center opacity-80" 
++        />
++        {/* Overlay escuro para consistência de cor (SEM blur para preservar 100% da resolução da foto) */}
++        <div className="absolute inset-0 bg-black/80 md:bg-black/50" />
++
++        
++        {/* Smooth fades at borders to blend perfectly com outras seções (#040608) */}
++        <div className="absolute top-0 left-0 w-full h-32 md:h-48 bg-gradient-to-b from-[#040608] via-[#040608]/80 to-transparent pointer-events-none" />
++        <div className="absolute bottom-0 left-0 w-full h-32 md:h-48 bg-gradient-to-t from-[#040608] via-[#040608]/80 to-transparent pointer-events-none" />
++      </div>
++
+       {/* Estilo para animação infinita do marquee */}
+       <style>{`
+         @keyframes scroll {
+@@ -40,14 +56,14 @@ export function BanksSection() {
+       <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[1000px] h-[500px] bg-primary/5 blur-[120px] rounded-[100%] pointer-events-none z-0" />
+       
+       <div className="container mx-auto px-4 relative z-10 w-full mb-8 sm:mb-10">
+-        <div className="text-center">
+-           <span className="text-primary font-bold text-sm tracking-widest uppercase mb-2 block drop-shadow-md">
++        <div className="text-center drop-shadow-2xl">
++           <span className="text-primary font-bold text-sm tracking-widest uppercase mb-3 block drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+             Parceiros de Financiamento
+           </span>
+-          <h2 className="font-heading font-black text-3xl sm:text-4xl md:text-5xl text-foreground">
++          <h2 className="font-heading font-black text-3xl sm:text-4xl md:text-5xl text-white drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)]">
+             As Melhores Taxas do <span className="text-gradient-orange">Mercado</span>
+           </h2>
+-          <p className="mt-3 text-secondary-foreground text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
++          <p className="mt-4 text-zinc-100 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-medium drop-shadow-[0_2px_5px_rgba(0,0,0,1)]">
+              Trabalhamos com os principais bancos para garantir condições exclusivas, prazos estendidos e carência imperdível na hora de financiar o seu projeto de energia solar.
+           </p>
+         </div>
+@@ -66,12 +82,15 @@ export function BanksSection() {
+             {marqueeBanks.map((bank, index) => (
+               <div 
+                 key={`${bank.id}-${index}`}
+-                className="flex items-center justify-center transition-all duration-300 hover:scale-105 cursor-pointer flex-shrink-0"
++                className="flex items-center justify-center transition-all duration-300 hover:scale-105 cursor-pointer flex-shrink-0 group"
+               >
++                {/* Glow branco clarinho exclusivo por trás do logo para separar do fundo */}
++                <div className="absolute inset-0 bg-white/5 rounded-full blur-[25px] scale-75 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
++                
+                 <img 
+                   src={bank.src} 
+                   alt={bank.alt} 
+-                  className="h-16 sm:h-20 md:h-28 lg:h-32 w-auto object-contain max-w-[200px] sm:max-w-[260px] md:max-w-[320px] lg:max-w-[400px]"
++                  className="h-16 sm:h-20 md:h-28 lg:h-32 w-auto object-contain max-w-[200px] sm:max-w-[260px] md:max-w-[320px] lg:max-w-[400px] drop-shadow-[0_0_12px_rgba(0,0,0,0.8)] z-10 relative"
+                 />
+               </div>
+             ))}
+diff --git a/src/components/sections/BenefitsSection.tsx b/src/components/sections/BenefitsSection.tsx
+index 21053d4..33ef106 100644
+--- a/src/components/sections/BenefitsSection.tsx
++++ b/src/components/sections/BenefitsSection.tsx
+@@ -29,8 +29,19 @@ const progressBars = [
+ 
+ export function BenefitsSection() {
+   return (
+-    <section className="py-16 sm:py-20 bg-background relative z-10">
+-      <div className="container mx-auto px-4 sm:px-6 md:px-8">
++    <section className="py-16 sm:py-20 bg-[#070b10] relative w-full z-10">
++      {/* Background de Alta Qualidade */}
++      <div className="absolute inset-0 z-0 bg-[#040608] pointer-events-none" />
++
++      {/* Background Mesh/Grid Tecnológico Sutil com Fade Real */}
++      <div
++        className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none mix-blend-overlay opacity-50"
++        style={{
++          maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
++          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)'
++        }}
++      />
++      <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
+         
+         {/* Benefícios Icons */}
+         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-20">
+diff --git a/src/components/sections/ContactSection.tsx b/src/components/sections/ContactSection.tsx
+index ccb2597..e622ea0 100644
+--- a/src/components/sections/ContactSection.tsx
++++ b/src/components/sections/ContactSection.tsx
+@@ -6,7 +6,7 @@ import bgContact from '../../assets/04 SEÇÃO.jpg'
+ 
+ export function ContactSection() {
+   return (
+-    <section className="py-16 sm:py-24 md:py-32 bg-background relative overflow-hidden" id="contatos">
++    <section className="py-16 sm:py-24 md:py-32 bg-[#040608] relative w-full overflow-hidden" id="contatos">
+       {/* Background Image and Overlays */}
+       <div className="absolute inset-0 z-0">
+         <img 
+@@ -14,14 +14,14 @@ export function ContactSection() {
+           alt="Contato ST Energia" 
+           className="w-full h-full object-cover opacity-60 mix-blend-overlay" 
+         />
+-        <div className="absolute inset-0 bg-background/90" />
++        <div className="absolute inset-0 bg-[#040608]/90" />
+         
+         {/* Sutil brilho laranja no centro */}
+-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30 blur-[150px] rounded-full bg-primary w-[800px] h-[400px] pointer-events-none" />
++        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30 blur-[150px] rounded-full bg-primary w-[800px] h-[400px] pointer-events-none z-0" />
+         
+-        {/* Smooth fades at borders */}
+-        <div className="absolute top-0 left-0 w-full h-32 md:h-48 bg-gradient-to-b from-background via-background/80 to-transparent pointer-events-none" />
+-        <div className="absolute bottom-0 left-0 w-full h-32 md:h-48 bg-gradient-to-t from-background via-background/80 to-transparent pointer-events-none" />
++        {/* Smooth fades at borders to blend perfectly with other sections */}
++        <div className="absolute top-0 left-0 w-full h-32 md:h-48 bg-gradient-to-b from-[#040608] via-[#040608]/80 to-transparent pointer-events-none" />
++        <div className="absolute bottom-0 left-0 w-full h-32 md:h-48 bg-gradient-to-t from-[#040608] via-[#040608]/80 to-transparent pointer-events-none" />
+       </div>
+ 
+       <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10 text-center">
+diff --git a/src/components/sections/DiferenciaisSection.tsx b/src/components/sections/DiferenciaisSection.tsx
+index 9bbf2d0..fe7a868 100644
+--- a/src/components/sections/DiferenciaisSection.tsx
++++ b/src/components/sections/DiferenciaisSection.tsx
+@@ -1,6 +1,5 @@
+ import React from 'react'
+ import { SectionHeader } from '../ui/SectionHeader'
+-
+ const features = [
+   {
+     image: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=2070&auto=format&fit=crop',
+@@ -26,21 +25,18 @@ const features = [
+ 
+ export function DiferenciaisSection() {
+   return (
+-    <section className="py-16 sm:py-20 md:py-24 relative bg-background w-full">
+-      {/* Background Topográfico Sutil com bordas esfumaçadas (fade) */}
++    <section className="py-16 sm:py-20 md:py-24 relative bg-[#070b10] w-full">
++      {/* Background de Alta Qualidade */}
++      <div className="absolute inset-0 z-0 bg-[#040608] pointer-events-none" />
++
++      {/* Background Mesh/Grid Tecnológico Sutil com Fade Real */}
+       <div
+-        className="absolute inset-0 z-0 pointer-events-none"
++        className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none mix-blend-overlay opacity-50"
+         style={{
+           maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
+           WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)'
+         }}
+-      >
+-        <img
+-          src="https://images.unsplash.com/photo-1620121692029-d088224ddc74?q=80&w=2064&auto=format&fit=crop"
+-          alt="Textura Topográfica Abstrata"
+-          className="w-full h-full object-cover opacity-[0.03] grayscale mix-blend-screen"
+-        />
+-      </div>
++      />
+ 
+       {/* Glow Radial central para atrair o olhar */}
+       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] h-[600px] bg-primary/10 blur-[130px] rounded-[100%] pointer-events-none z-0" />
+diff --git a/src/components/sections/ExperienceSection.tsx b/src/components/sections/ExperienceSection.tsx
+index 046238e..b850123 100644
+--- a/src/components/sections/ExperienceSection.tsx
++++ b/src/components/sections/ExperienceSection.tsx
+@@ -61,17 +61,18 @@ export function ExperienceSection() {
+   const sunRotate = useTransform(scrollYProgress, [0, 1], [0, 90]);
+ 
+   return (
+-    <section ref={sectionRef} className="relative w-full bg-[#070b10] py-16 sm:py-20 md:py-24 z-20" id="sobre">
++    <section ref={sectionRef} className="relative w-full py-16 sm:py-20 md:py-24 z-20" id="sobre">
+ 
+-      {/* Background de Alta Qualidade */}
+-      <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#0b141a] via-[#070b10] to-[#040608] pointer-events-none" />
++      {/* Extensão agressiva do background para baixo para cobrir toda a área de viagem Parallax do Sol,
++          evitando a "quebra matemática" do mix-blend-screen quando o sol sai do elemento */}
++      <div className="absolute inset-x-0 top-0 -bottom-[800px] z-0 bg-gradient-to-b from-[#0b141a] via-[#070b10] to-[#040608] pointer-events-none" />
+ 
+       {/* Background Mesh/Grid Tecnológico Sutil com Fade Real */}
+       <div
+-        className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none mix-blend-overlay opacity-50"
++        className="absolute inset-x-0 top-0 -bottom-[800px] z-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none mix-blend-overlay opacity-50"
+         style={{
+-          maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
+-          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)'
++          maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 70%, transparent)',
++          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 70%, transparent)'
+         }}
+       />
+ 
+diff --git a/src/components/sections/FaqSection.tsx b/src/components/sections/FaqSection.tsx
+index f0392a7..99919fa 100644
+--- a/src/components/sections/FaqSection.tsx
++++ b/src/components/sections/FaqSection.tsx
+@@ -1,7 +1,7 @@
+ import React, { useState } from 'react'
+ import { motion, AnimatePresence } from 'framer-motion'
+ import { ChevronDown, HelpCircle } from 'lucide-react'
+-import bgFaq from '../../assets/03 SEÇÃO.jpg'
++import bgFaq from '../../assets/IMAGEM FUNDO 10.jpg'
+ 
+ const faqs = [
+   {
+@@ -34,15 +34,21 @@ export function FaqSection() {
+   const [openIndex, setOpenIndex] = useState<number | null>(0)
+ 
+   return (
+-    <section className="py-16 sm:py-20 md:py-24 relative bg-background w-full" id="faq">
+-      {/* Background Mesh/Grid Tecnológico Sutil com Fade Real */}
+-      <div
+-        className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"
+-        style={{
+-          maskImage: 'linear-gradient(to bottom, transparent, black 5%, black 95%, transparent)',
+-          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 5%, black 95%, transparent)'
+-        }}
+-      />
++    <section className="py-16 sm:py-20 md:py-24 relative bg-[#070b10] w-full" id="faq">
++      {/* Background Image with Dark Overlay and Section Smoothing Fades */}
++      <div className="absolute inset-0 z-0 overflow-hidden">
++        <img 
++          src={bgFaq} 
++          alt="ST Energia Background" 
++          className="w-full h-full object-cover object-center opacity-80" 
++        />
++        {/* Overlay escuro sem blur para preservar total nitidez da imagem */}
++        <div className="absolute inset-0 bg-black/80 md:bg-black/50" />
++        
++        {/* Smooth fades at borders to blend perfectly with other sections (#040608) */}
++        <div className="absolute top-0 left-0 w-full h-32 md:h-48 bg-gradient-to-b from-[#040608] via-[#040608]/80 to-transparent pointer-events-none" />
++        <div className="absolute bottom-0 left-0 w-full h-32 md:h-48 bg-gradient-to-t from-[#040608] via-[#040608]/80 to-transparent pointer-events-none" />
++      </div>
+       
+       {/* Subtle glow */}
+       <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 blur-[120px] rounded-full pointer-events-none z-0" />
+diff --git a/src/components/sections/HeroSection.tsx b/src/components/sections/HeroSection.tsx
+index fb9a4a6..b5b2bf4 100644
+--- a/src/components/sections/HeroSection.tsx
++++ b/src/components/sections/HeroSection.tsx
+@@ -68,7 +68,7 @@ export function HeroSection() {
+             </div>
+ 
+             <div data-anim="fade-up" style={{ transitionDelay: '0.6s' }}>
+-              <p className="text-white/95 text-[16px] sm:text-lg md:text-xl max-w-[96%] sm:max-w-xl mx-auto lg:mx-0 mb-8 md:mb-12 leading-[1.65] font-medium drop-shadow-md">
++              <p className="text-white/95 text-[16px] sm:text-lg md:text-xl max-w-[96%] sm:max-w-xl mx-auto lg:mx-0 mb-8 md:mb-12 leading-[1.65] font-medium drop-shadow-md border-l-2 border-primary/50 text-left pl-5 py-2 bg-gradient-to-r from-primary/5 to-transparent">
+                 Transforme o sol em <strong className="text-white font-black text-[17px] sm:text-[19px] md:text-[22px]">economia real</strong>. Nossos consultores fazem todo o processo por você — do financiamento até a ativação da sua usina.
+               </p>
+             </div>
+diff --git a/src/components/sections/InvestReasonsSection.tsx b/src/components/sections/InvestReasonsSection.tsx
+index 604631f..3aea603 100644
+--- a/src/components/sections/InvestReasonsSection.tsx
++++ b/src/components/sections/InvestReasonsSection.tsx
+@@ -44,21 +44,19 @@ export function InvestReasonsSection() {
+   const sunRotate = useTransform(scrollYProgress, [0, 1], [0, 90]);
+ 
+   return (
+-    <section ref={sectionRef} className="py-16 sm:py-20 md:py-24 relative w-full overflow-hidden bg-[#070b10]">
+-      {/* Background de Alta Qualidade */}
+-      <div className="absolute inset-0 z-0 bg-[#040608] pointer-events-none" />
++    <section ref={sectionRef} className="py-16 sm:py-20 md:py-24 relative w-full">
+ 
+-      {/* Grid Tecnológico Sutil com Fade Real */}
++      {/* Background Mesh/Grid Tecnológico Sutil com Fade Real */}
+       <div
+         className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none mix-blend-overlay opacity-50"
+         style={{
+-          maskImage: 'linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)',
+-          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 15%, black 85%, transparent)'
++          maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
++          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)'
+         }}
+       />
+ 
+-      {/* EFEITO LUZ DE PREENCHIMENTO (Top Right) para balancear a descida do sol anterior */}
+-      <div className="absolute -top-[10%] -right-[10%] w-[600px] h-[600px] bg-[#ff8a00]/5 blur-[150px] rounded-full pointer-events-none z-0" />
++      {/* EFEITO LUZ DE PREENCHIMENTO movido para baixo para não ser decapitado pela borda */}
++      <div className="absolute top-[20%] -right-[10%] w-[500px] h-[500px] bg-[#ff8a00]/5 blur-[150px] rounded-full pointer-events-none z-0" />
+       
+       <div className="container mx-auto px-4 sm:px-6 relative z-10">
+         
+diff --git a/src/components/sections/ServicesSection.tsx b/src/components/sections/ServicesSection.tsx
+index 5c0c0c4..55cdf18 100644
+--- a/src/components/sections/ServicesSection.tsx
++++ b/src/components/sections/ServicesSection.tsx
+@@ -29,8 +29,19 @@ const services = [
+ 
+ export function ServicesSection() {
+   return (
+-    <section id="solucoes" className="py-16 sm:py-20 md:py-24 relative">
+-      <div className="container mx-auto px-4 sm:px-6 md:px-8">
++    <section id="solucoes" className="py-16 sm:py-20 md:py-24 relative bg-[#070b10] w-full">
++      {/* Background de Alta Qualidade */}
++      <div className="absolute inset-0 z-0 bg-[#040608] pointer-events-none" />
++
++      {/* Background Mesh/Grid Tecnológico Sutil com Fade Real */}
++      <div
++        className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none mix-blend-overlay opacity-50"
++        style={{
++          maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
++          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)'
++        }}
++      />
++      <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
+         
+         <SectionHeader 
+           overline="Serviços Especializados"
+diff --git a/src/components/sections/SolutionsSection.tsx b/src/components/sections/SolutionsSection.tsx
+index 2d03b36..96b237c 100644
+--- a/src/components/sections/SolutionsSection.tsx
++++ b/src/components/sections/SolutionsSection.tsx
+@@ -36,13 +36,16 @@ export function SolutionsSection() {
+   const [activeTab, setActiveTab] = useState(tabData[0]);
+ 
+   return (
+-    <section className="py-16 sm:py-20 md:py-24 relative bg-background w-full">
++    <section className="py-16 sm:py-20 md:py-24 relative bg-[#070b10] w-full">
++      {/* Background de Alta Qualidade */}
++      <div className="absolute inset-0 z-0 bg-[#040608] pointer-events-none" />
++
+       {/* Background Mesh/Grid Tecnológico Sutil com Fade Real */}
+       <div
+-        className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"
++        className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none mix-blend-overlay opacity-50"
+         style={{
+-          maskImage: 'linear-gradient(to bottom, transparent, black 5%, black 95%, transparent)',
+-          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 5%, black 95%, transparent)'
++          maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
++          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)'
+         }}
+       />
+       <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
+diff --git a/src/components/sections/StepsSection.tsx b/src/components/sections/StepsSection.tsx
+index 93d27e3..71b4855 100644
+--- a/src/components/sections/StepsSection.tsx
++++ b/src/components/sections/StepsSection.tsx
+@@ -24,8 +24,19 @@ const steps = [
+ 
+ export function StepsSection() {
+   return (
+-    <section className="py-16 sm:py-20 md:py-24 bg-card/20 relative">
+-      <div className="container mx-auto px-4 sm:px-6 md:px-8">
++    <section className="py-16 sm:py-20 md:py-24 bg-[#070b10] relative w-full">
++      {/* Background de Alta Qualidade */}
++      <div className="absolute inset-0 z-0 bg-[#040608] pointer-events-none" />
++
++      {/* Background Mesh/Grid Tecnológico Sutil com Fade Real */}
++      <div
++        className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none mix-blend-overlay opacity-50"
++        style={{
++          maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
++          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)'
++        }}
++      />
++      <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
+         
+         <SectionHeader 
+           overline="Como começar a gerar energia"
+diff --git a/src/components/sections/SustainabilitySection.tsx b/src/components/sections/SustainabilitySection.tsx
+index 12a38d3..da3858f 100644
+--- a/src/components/sections/SustainabilitySection.tsx
++++ b/src/components/sections/SustainabilitySection.tsx
+@@ -4,13 +4,16 @@ import { motion } from 'framer-motion'
+ 
+ export function SustainabilitySection() {
+   return (
+-    <section className="py-16 sm:py-20 md:py-24 relative w-full bg-background overflow-hidden">
++    <section className="py-16 sm:py-20 md:py-24 relative w-full bg-[#070b10] overflow-hidden">
++      {/* Background de Alta Qualidade */}
++      <div className="absolute inset-0 z-0 bg-[#040608] pointer-events-none" />
++
+       {/* Background Mesh/Grid Tecnológico Sutil com Fade Real */}
+       <div
+-        className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"
++        className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none mix-blend-overlay opacity-50"
+         style={{
+-          maskImage: 'linear-gradient(to bottom, transparent, black 5%, black 95%, transparent)',
+-          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 5%, black 95%, transparent)'
++          maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
++          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)'
+         }}
+       />
+ 
+diff --git a/src/components/sections/TestimonialsSection.tsx b/src/components/sections/TestimonialsSection.tsx
+index 0a25f4d..f120100 100644
+--- a/src/components/sections/TestimonialsSection.tsx
++++ b/src/components/sections/TestimonialsSection.tsx
+@@ -27,13 +27,16 @@ const depoimentos = [
+ 
+ export function TestimonialsSection() {
+   return (
+-    <section className="py-16 sm:py-20 md:py-24 relative bg-background w-full">
+-      {/* Background Mesh/Grid Tecnológico Sutil com Fade Real */}
++    <section className="py-16 sm:py-20 md:py-24 relative bg-[#070b10] w-full">
++      {/* Background de Alta Qualidade */}
++      <div className="absolute inset-0 z-0 bg-[#040608] pointer-events-none" />
++
++      {/* Background Mesh/Grid Quadriculado mais evidente */}
+       <div
+-        className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"
++        className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none opacity-80"
+         style={{
+-          maskImage: 'linear-gradient(to bottom, transparent, black 5%, black 95%, transparent)',
+-          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 5%, black 95%, transparent)'
++          maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
++          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)'
+         }}
+       />
+ 

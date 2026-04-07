@@ -4,13 +4,16 @@ import { motion } from 'framer-motion'
 
 export function SustainabilitySection() {
   return (
-    <section className="py-16 sm:py-20 md:py-24 relative w-full bg-background overflow-hidden">
-      {/* Background Mesh/Grid Tecnológico Sutil com Fade Real */}
+    <section className="py-16 sm:py-20 md:py-24 relative w-full bg-[#070b10] overflow-hidden">
+      {/* Background de Alta Qualidade */}
+      <div className="absolute inset-0 z-0 bg-[#040608] pointer-events-none" />
+
+      {/* Background Dots/Pontilhado Tecnológico */}
       <div
-        className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"
+        className="absolute inset-0 z-0 bg-[radial-gradient(#ffffff18_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none opacity-80"
         style={{
-          maskImage: 'linear-gradient(to bottom, transparent, black 5%, black 95%, transparent)',
-          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 5%, black 95%, transparent)'
+          maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
+          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)'
         }}
       />
 
@@ -18,7 +21,7 @@ export function SustainabilitySection() {
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8 max-w-[1200px] mx-auto text-center lg:text-left">
 
           <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start" data-anim="fade-right">
-            <h2 className="text-3xl sm:text-5xl md:text-6xl font-heading font-extrabold text-white mb-6 leading-tight">
+            <h2 className="text-[12vw] sm:text-5xl md:text-6xl lg:text-[80px] font-heading font-black text-white mb-6 leading-[1.1] tracking-tight">
               Gerando <br />
               <span className="text-white relative inline-block">
                 Sustentabilida<span className="bg-white/10 text-white/50 px-2 rounded-lg inline-block mix-blend-screen ml-1 -rotate-2 origin-bottom shadow-lg backdrop-blur-md">de!</span>
@@ -35,7 +38,7 @@ export function SustainabilitySection() {
 
             <a
               href="#simulator"
-              className="inline-flex items-center justify-center px-10 py-5 bg-primary text-primary-foreground font-bold rounded-full hover:bg-orange-600 transition-all duration-300 hover:shadow-orange hover:-translate-y-1 text-lg group w-full sm:w-auto"
+              className="hidden md:inline-flex items-center justify-center px-10 py-5 bg-primary text-primary-foreground font-bold rounded-full hover:bg-orange-600 transition-all duration-300 hover:shadow-orange hover:-translate-y-1 text-lg group w-full sm:w-auto"
             >
               Faça um orçamento
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -49,8 +52,8 @@ export function SustainabilitySection() {
 
               <div className="absolute inset-0 bg-primary/20 blur-[120px] rounded-full scale-75 animate-pulse-glow" />
 
-              <motion.div 
-                animate={{ y: [0, -15, 0] }} 
+              <motion.div
+                animate={{ y: [0, -15, 0] }}
                 transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
                 className="relative w-80 h-80 sm:w-[400px] sm:h-[400px] md:w-[480px] md:h-[480px] z-10 flex items-center justify-center"
               >

@@ -36,13 +36,16 @@ export function SolutionsSection() {
   const [activeTab, setActiveTab] = useState(tabData[0]);
 
   return (
-    <section className="py-16 sm:py-20 md:py-24 relative bg-background w-full">
+    <section className="pt-12 pb-16 sm:pt-14 sm:pb-20 md:pt-16 md:pb-24 relative bg-[#070b10] w-full">
+      {/* Background de Alta Qualidade */}
+      <div className="absolute inset-0 z-0 bg-[#040608] pointer-events-none" />
+
       {/* Background Mesh/Grid Tecnológico Sutil com Fade Real */}
       <div
-        className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"
+        className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none mix-blend-overlay opacity-50"
         style={{
-          maskImage: 'linear-gradient(to bottom, transparent, black 5%, black 95%, transparent)',
-          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 5%, black 95%, transparent)'
+          maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
+          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)'
         }}
       />
       <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
@@ -51,19 +54,19 @@ export function SolutionsSection() {
           
           {/* Esquerda: Textos e Botões */}
           <div className="w-full lg:w-5/12 flex flex-col items-start text-left" data-anim="fade-right">
-            <span className="text-secondary-foreground font-medium text-xl md:text-2xl mb-1 tracking-wide">
+            <span className="text-primary font-bold text-sm sm:text-base tracking-widest uppercase mb-4 block drop-shadow-md">
               As melhores
             </span>
-            <h2 className="font-heading font-extrabold text-4xl md:text-6xl text-white mb-8">
+            <h2 className="font-heading font-black text-4xl sm:text-5xl md:text-6xl text-white mb-6 drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)]">
               Soluções
             </h2>
             
-            <p className="text-zinc-400 text-lg leading-relaxed mb-12">
+            <p className="text-zinc-300 text-base sm:text-lg leading-relaxed mb-12 font-medium drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] max-w-xl">
               A ST Energia oferece as melhores soluções em energia solar para residências, comércios e propriedades rurais. Com qualidade e garantia, proporcionamos alta economia para você. Invista em um futuro sustentável e reduza seus custos com energia!
             </p>
 
             {/* Abas Interativas */}
-            <div className="flex gap-4 sm:gap-8 justify-between w-full max-w-[400px]">
+            <div className="flex justify-center sm:justify-start gap-4 sm:gap-8 w-full max-w-full">
               {tabData.map((tab) => {
                 const isActive = activeTab.id === tab.id;
                 
@@ -71,28 +74,28 @@ export function SolutionsSection() {
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab)}
-                    className="flex flex-col items-center gap-4 group relative focus:outline-none transition-transform hover:scale-105 active:scale-95"
+                    className="flex flex-col items-center gap-3 sm:gap-4 group relative focus:outline-none transition-transform hover:scale-105 active:scale-95"
                   >
-                    <div className={`relative w-16 h-16 sm:w-24 sm:h-24 rounded-full flex items-center justify-center transition-all duration-300 ${
+                    <div className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-full flex items-center justify-center transition-all duration-400 border-2 ${
                       isActive 
-                        ? 'bg-background border-2 border-primary shadow-[0_0_25px_rgba(249,115,22,0.3)]' 
-                        : 'bg-primary/90 hover:bg-primary shadow-lg'
+                        ? 'bg-primary border-primary shadow-[0_0_30px_rgba(249,115,22,0.6)]' 
+                        : 'bg-[#0f1720] border-white/10 group-hover:border-primary/50 shadow-md'
                     }`}>
                       {/* Badge do número */}
-                      <div className={`absolute -top-1 -left-1 w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-bold text-xs sm:text-sm shadow-md transition-colors duration-300 ${
-                        isActive ? 'bg-primary text-white' : 'bg-background text-primary border border-primary/30'
+                      <div className={`absolute -top-1 -left-1 w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-bold text-xs sm:text-sm shadow-md transition-colors duration-400 border-2 ${
+                        isActive ? 'bg-[#0f1720] text-primary border-primary' : 'bg-primary text-[#0f1720] border-[#0f1720]'
                       }`}>
                         {tab.num}
                       </div>
                       
                       {/* Ícone */}
-                      <tab.icon className={`w-6 h-6 sm:w-10 sm:h-10 transition-colors duration-300 ${
-                        isActive ? 'text-primary' : 'text-background'
-                      }`} />
+                      <tab.icon className={`w-8 h-8 sm:w-10 sm:h-10 transition-colors duration-400 ${
+                        isActive ? 'text-white' : 'text-zinc-500 group-hover:text-white'
+                      }`} strokeWidth={isActive ? 2.5 : 2} />
                     </div>
                     
-                    <span className={`font-semibold text-base sm:text-lg transition-colors duration-300 ${
-                      isActive ? 'text-primary' : 'text-zinc-400 group-hover:text-zinc-200'
+                    <span className={`font-bold text-sm sm:text-lg transition-colors duration-400 ${
+                      isActive ? 'text-white' : 'text-zinc-500 group-hover:text-zinc-300'
                     }`}>
                       {tab.title}
                     </span>
