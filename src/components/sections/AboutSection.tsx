@@ -34,7 +34,7 @@ export function AboutSection() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
             <div className="absolute bottom-6 left-6 right-6">
-              <div className="bg-card/80 backdrop-blur-md border border-border p-5 rounded-lg border-l-4 border-l-primary">
+              <div className="bg-card/80 backdrop-blur-sm md:backdrop-blur-md border border-border p-5 rounded-lg border-l-4 border-l-primary">
                 <p className="font-bold text-foreground text-xl">10+ Anos de Excelência</p>
                 <p className="text-secondary-foreground text-sm">Mais de 50MW implementados</p>
               </div>

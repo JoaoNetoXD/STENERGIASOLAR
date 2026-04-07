@@ -50,7 +50,7 @@ export function HeroSection() {
           {/* Esquerda: Textos (Reduza sua conta de luz) */}
           <div className="lg:col-span-6 flex flex-col justify-center text-center lg:text-left pt-4 sm:pt-0">
             <div data-anim="fade-up" style={{ transitionDelay: '0.15s' }}>
-              <div className="inline-flex justify-center items-center gap-2.5 bg-[#1a232b]/80 border border-white/10 backdrop-blur-md rounded-full px-4 py-2 sm:px-5 mb-8 sm:mb-8 shadow-lg transition-all hover:bg-white/10 w-fit mx-auto lg:mx-0">
+              <div className="inline-flex justify-center items-center gap-2.5 bg-[#1a232b]/80 border border-white/10 backdrop-blur-sm md:backdrop-blur-md rounded-full px-4 py-2 sm:px-5 mb-8 sm:mb-8 shadow-lg transition-all hover:bg-white/10 w-fit mx-auto lg:mx-0">
                 <Users size={14} className="text-primary hidden sm:block" />
                 <span className="text-white/90 font-medium text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.25em] uppercase">
                   +2000 famílias <span className="text-primary font-bold">que já economizam</span>

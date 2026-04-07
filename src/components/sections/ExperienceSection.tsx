@@ -66,12 +66,12 @@ export function ExperienceSection() {
       {/* Extensão do background não é mais necessária pois removemos o z-20 e isolamento de contexto */}
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#0b141a] via-[#070b10] to-[#040608] pointer-events-none" />
 
-      {/* Background Mesh/Grid Tecnológico Sutil com Fade Real */}
+      {/* Background Dots/Pontilhado Tecnológico */}
       <div
-        className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none mix-blend-overlay opacity-50"
+        className="absolute inset-0 z-0 bg-[radial-gradient(#ffffff18_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none opacity-80"
         style={{
-          maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 70%, transparent)',
-          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 70%, transparent)'
+          maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
+          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)'
         }}
       />
 
@@ -81,7 +81,7 @@ export function ExperienceSection() {
         style={{ y: sunY, scale: sunScale, rotate: sunRotate }}
       >
         {/* Glow Extenso de Fundo */}
-        <div className="absolute w-[800px] h-[800px] bg-[#ff8a00]/20 rounded-full blur-[140px] mix-blend-screen" />
+        <div className="absolute w-[800px] h-[800px] bg-[#ff8a00]/20 rounded-full blur-[60px] md:blur-[140px] mix-blend-screen" />
         
         {/* Halo Orbital Laranja */}
         <div className="absolute w-[350px] h-[350px] border-[4px] border-[#ff8a00]/40 rounded-full blur-[8px] mix-blend-screen" />
@@ -100,7 +100,7 @@ export function ExperienceSection() {
       </motion.div>
 
       {/* EFEITO LUZ DE PREENCHIMENTO */}
-      <div className="absolute -bottom-[10%] -left-[10%] w-[600px] h-[600px] bg-blue-500/5 blur-[150px] rounded-full pointer-events-none z-0" />
+      <div className="absolute -bottom-[10%] -left-[10%] w-[600px] h-[600px] bg-blue-500/5 blur-[60px] md:blur-[150px] rounded-full pointer-events-none z-0" />
 
       <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
 
@@ -122,36 +122,35 @@ export function ExperienceSection() {
               Mais de duas décadas entregando economia e sustentabilidade para empresas e famílias em todo o Brasil. Nossa equipe 100% própria atua em infraestrutura sólida, acompanhando você da consultoria à ativação.
             </p>
 
-            {/* Estatísticas Numéricas em Cards Premium */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
-              {/* Card 1 */}
-              <div className="bg-[#111a20] border border-white/5 rounded-2xl p-6 flex flex-col items-center sm:items-start text-center sm:text-left shadow-2xl relative overflow-hidden group hover:border-primary/40 hover:bg-[#162129] transition-all duration-500">
-                <div className="absolute -right-6 -bottom-6 w-24 h-24 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/30 transition-all duration-500 pointer-events-none"></div>
-                <div className="absolute top-0 left-0 w-[2px] h-0 bg-primary group-hover:h-full transition-all duration-500 ease-out"></div>
-                <div className="font-heading font-black text-4xl sm:text-5xl text-white mb-1 flex items-end gap-1 relative z-10 transition-transform duration-500 group-hover:-translate-y-1">
-                  <AnimatedNumber value={30} /><span className="text-lg sm:text-xl text-primary font-bold mb-1">Anos</span>
+            {/* Estatísticas Numéricas (Layout unificado para Mobile e Desktop) */}
+            <div className="grid grid-cols-3 divide-x divide-white/10 bg-[#111a20]/90 backdrop-blur-sm md:backdrop-blur-md border border-white/10 rounded-2xl mb-10 sm:mb-12 shadow-2xl overflow-hidden relative">
+              <div className="absolute -left-10 -bottom-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl pointer-events-none"></div>
+              
+              {/* Stat 1 */}
+              <div className="p-3 sm:p-6 flex flex-col items-center justify-center text-center group hover:bg-white/5 transition-colors relative">
+                <div className="absolute top-0 left-0 w-full h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                <div className="font-heading font-black text-2xl sm:text-4xl md:text-5xl text-white mb-1 flex items-end justify-center gap-0.5 sm:gap-1 relative z-10 group-hover:-translate-y-1 transition-transform duration-300">
+                  <AnimatedNumber value={30} /><span className="text-xs sm:text-xl text-primary font-bold mb-0 sm:mb-1">Anos</span>
                 </div>
-                <p className="text-xs sm:text-sm font-semibold text-zinc-400 relative z-10 tracking-wide uppercase">De Histórico</p>
+                <p className="text-[10px] sm:text-xs md:text-sm font-bold text-zinc-400 relative z-10 tracking-[0.1em] uppercase leading-tight h-[28px] sm:h-auto flex items-center justify-center">De História</p>
               </div>
 
-              {/* Card 2 */}
-              <div className="bg-[#111a20] border border-white/5 rounded-2xl p-6 flex flex-col items-center sm:items-start text-center sm:text-left shadow-2xl relative overflow-hidden group hover:border-primary/40 hover:bg-[#162129] transition-all duration-500">
-                <div className="absolute -right-6 -top-6 w-32 h-32 bg-primary/10 rounded-full blur-2xl group-hover:bg-primary/20 transition-all duration-500 pointer-events-none"></div>
-                <div className="absolute top-0 w-0 h-[2px] right-0 bg-primary group-hover:w-full transition-all duration-500 ease-out"></div>
-                <div className="font-heading font-black text-4xl sm:text-5xl text-white mb-1 flex items-end gap-1 relative z-10 transition-transform duration-500 group-hover:-translate-y-1">
-                  <AnimatedNumber value={2000} duration={2500} /><span className="text-2xl sm:text-3xl text-primary font-bold mb-1">+</span>
+              {/* Stat 2 */}
+              <div className="p-3 sm:p-6 flex flex-col items-center justify-center text-center group hover:bg-white/5 transition-colors relative">
+                <div className="absolute top-0 left-0 w-full h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                <div className="font-heading font-black text-2xl sm:text-4xl md:text-5xl text-white mb-1 flex items-end justify-center gap-0.5 sm:gap-1 relative z-10 group-hover:-translate-y-1 transition-transform duration-300">
+                  <AnimatedNumber value={2000} duration={2500} /><span className="text-base sm:text-3xl text-primary font-bold mb-0 sm:mb-1">+</span>
                 </div>
-                <p className="text-xs sm:text-sm font-semibold text-zinc-400 relative z-10 tracking-wide uppercase">Projetos Ativos</p>
+                <p className="text-[10px] sm:text-xs md:text-sm font-bold text-zinc-400 relative z-10 tracking-[0.1em] uppercase leading-tight h-[28px] sm:h-auto flex items-center justify-center">Projetos Ativos</p>
               </div>
 
-              {/* Card 3 */}
-              <div className="bg-[#111a20] border border-white/5 rounded-2xl p-6 flex flex-col items-center sm:items-start text-center sm:text-left shadow-2xl relative overflow-hidden group hover:border-primary/40 hover:bg-[#162129] transition-all duration-500">
-                <div className="absolute -left-6 -bottom-6 w-24 h-24 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/30 transition-all duration-500 pointer-events-none"></div>
-                <div className="absolute bottom-0 right-0 w-[2px] h-0 bg-primary group-hover:h-full transition-all duration-500 ease-out"></div>
-                <div className="font-heading font-black text-4xl sm:text-5xl text-white mb-1 flex items-center gap-1 relative z-10 transition-transform duration-500 group-hover:-translate-y-1">
-                  4.<AnimatedNumber value={8} duration={1500} /><Star size={24} className="text-primary fill-primary ml-1 drop-shadow-[0_0_10px_rgba(249,115,22,0.8)]" />
+              {/* Stat 3 */}
+              <div className="p-3 sm:p-6 flex flex-col items-center justify-center text-center group hover:bg-white/5 transition-colors relative">
+                <div className="absolute top-0 left-0 w-full h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                <div className="font-heading font-black text-2xl sm:text-4xl md:text-5xl text-white mb-1 flex items-center justify-center gap-0.5 sm:gap-1 relative z-10 group-hover:-translate-y-1 transition-transform duration-300">
+                  4.<AnimatedNumber value={9} duration={1500} /><Star size={14} className="text-primary fill-primary ml-0.5 drop-shadow-[0_0_10px_rgba(249,115,22,0.8)] sm:w-6 sm:h-6" />
                 </div>
-                <p className="text-xs sm:text-sm font-semibold text-zinc-400 relative z-10 tracking-wide uppercase">Avaliação Média</p>
+                <p className="text-[10px] sm:text-xs md:text-sm font-bold text-zinc-400 relative z-10 tracking-[0.1em] uppercase leading-tight h-[28px] sm:h-auto flex items-center justify-center">Avaliação Média</p>
               </div>
             </div>
 
@@ -211,7 +210,7 @@ export function ExperienceSection() {
               <div className="relative flex items-center justify-center">
                 <div className="absolute w-24 h-24 bg-primary/50 rounded-full animate-[ping_3s_ease-out_infinite]" />
                 <div className="absolute w-32 h-32 bg-primary/20 rounded-full animate-[ping_3s_ease-out_infinite]" style={{ animationDelay: '1s' }} />
-                <div className="relative w-20 h-20 bg-primary/90 backdrop-blur-md border-[2px] border-white/20 rounded-full flex items-center justify-center text-white shadow-[0_0_40px_rgba(249,115,22,0.6)] group-hover:bg-primary transition-all duration-300 group-hover:scale-110 z-10">
+                <div className="relative w-20 h-20 bg-primary/90 backdrop-blur-sm md:backdrop-blur-md border-[2px] border-white/20 rounded-full flex items-center justify-center text-white shadow-[0_0_40px_rgba(249,115,22,0.6)] group-hover:bg-primary transition-all duration-300 group-hover:scale-110 z-10">
                   <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" className="ml-1 drop-shadow-md">
                     <path d="M8 5v14l11-7z" />
                   </svg>
@@ -221,7 +220,7 @@ export function ExperienceSection() {
 
             {/* Label Inferior (Pill style premium) */}
             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-max max-w-[90%] pointer-events-none">
-              <div className="bg-black/40 backdrop-blur-xl border border-white/10 px-5 sm:px-6 py-3 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.5)] flex items-center gap-3">
+              <div className="bg-black/40 backdrop-blur-sm md:backdrop-blur-xl border border-white/10 px-5 sm:px-6 py-3 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.5)] flex items-center gap-3">
                  <div className="relative flex items-center justify-center w-2.5 h-2.5">
                    <span className="absolute inline-flex w-full h-full rounded-full bg-primary opacity-75 animate-ping"></span>
                    <span className="relative inline-flex rounded-full w-2.5 h-2.5 bg-primary"></span>

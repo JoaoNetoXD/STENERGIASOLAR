@@ -41,8 +41,8 @@ export function TestimonialsSection() {
       />
 
       {/* Focos gigantes de luz nos cantos da seção */}
-      <div className="absolute -top-[20%] -left-[10%] w-[600px] h-[600px] bg-primary/5 blur-[150px] rounded-full pointer-events-none z-0" />
-      <div className="absolute bottom-0 -right-[10%] w-[600px] h-[600px] bg-primary/5 blur-[150px] rounded-full pointer-events-none z-0" />
+      <div className="absolute -top-[20%] -left-[10%] w-[600px] h-[600px] bg-primary/5 blur-[60px] md:blur-[150px] rounded-full pointer-events-none z-0" />
+      <div className="absolute bottom-0 -right-[10%] w-[600px] h-[600px] bg-primary/5 blur-[60px] md:blur-[150px] rounded-full pointer-events-none z-0" />
 
       <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
 

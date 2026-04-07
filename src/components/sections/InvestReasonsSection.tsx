@@ -46,9 +46,9 @@ export function InvestReasonsSection() {
   return (
     <section ref={sectionRef} className="py-12 sm:py-14 md:py-16 relative w-full">
 
-      {/* Background Mesh/Grid Tecnológico Sutil com Fade Real */}
+      {/* Background Dots/Pontilhado Tecnológico */}
       <div
-        className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none mix-blend-overlay opacity-50"
+        className="absolute inset-0 z-0 bg-[radial-gradient(#ffffff18_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none opacity-80"
         style={{
           maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
           WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)'
@@ -56,7 +56,7 @@ export function InvestReasonsSection() {
       />
 
       {/* EFEITO LUZ DE PREENCHIMENTO movido para baixo para não ser decapitado pela borda */}
-      <div className="absolute top-[20%] -right-[10%] w-[500px] h-[500px] bg-[#ff8a00]/5 blur-[150px] rounded-full pointer-events-none z-0" />
+      <div className="absolute top-[20%] -right-[10%] w-[500px] h-[500px] bg-[#ff8a00]/5 blur-[60px] md:blur-[150px] rounded-full pointer-events-none z-0" />
       
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         
@@ -78,7 +78,7 @@ export function InvestReasonsSection() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -8 }}
-              className="bg-[#ffffff04] border border-[#ffffff10] backdrop-blur-xl rounded-2xl md:rounded-3xl py-6 px-4 md:p-8 flex flex-col items-center text-center group shadow-[0_8px_30px_rgb(0,0,0,0.3)] hover:border-primary/40 hover:bg-gradient-to-b hover:from-[#ffffff08] hover:to-[#ffffff02] hover:shadow-[0_0_40px_rgba(249,115,22,0.15)] transition-all duration-500 w-full relative overflow-hidden justify-center min-h-[220px] md:min-h-[300px]"
+              className="bg-[#ffffff04] border border-[#ffffff10] backdrop-blur-sm md:backdrop-blur-xl rounded-2xl md:rounded-3xl py-6 px-4 md:p-8 flex flex-col items-center text-center group shadow-[0_8px_30px_rgb(0,0,0,0.3)] hover:border-primary/40 hover:bg-gradient-to-b hover:from-[#ffffff08] hover:to-[#ffffff02] hover:shadow-[0_0_40px_rgba(249,115,22,0.15)] transition-all duration-500 w-full relative overflow-hidden justify-center min-h-[220px] md:min-h-[300px]"
             >
               {/* Subtle top edge glare for glass effect on hover */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-[#ffffff40] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -88,7 +88,7 @@ export function InvestReasonsSection() {
                 <div className="absolute inset-0 bg-primary/10 rounded-full blur-[20px] md:blur-[25px] scale-[1.3] md:scale-[1.5] group-hover:bg-primary/25 transition-colors duration-500"></div>
                 
                 {/* Icon Recess Container */}
-                <div className="w-16 h-16 md:w-24 md:h-24 rounded-full border border-[#ffffff15] flex items-center justify-center bg-black/40 backdrop-blur-md relative z-10 transition-all duration-500 group-hover:border-primary/50 group-hover:bg-black/60 group-hover:scale-105 shadow-[inset_0_2px_10px_rgba(0,0,0,0.5)]">
+                <div className="w-16 h-16 md:w-24 md:h-24 rounded-full border border-[#ffffff15] flex items-center justify-center bg-black/40 backdrop-blur-sm md:backdrop-blur-md relative z-10 transition-all duration-500 group-hover:border-primary/50 group-hover:bg-black/60 group-hover:scale-105 shadow-[inset_0_2px_10px_rgba(0,0,0,0.5)]">
                   <item.icon className="w-7 h-7 md:w-10 md:h-10 text-primary group-hover:scale-110 transition-transform duration-500 drop-shadow-[0_0_8px_rgba(249,115,22,0.6)]" />
                 </div>
               </div>

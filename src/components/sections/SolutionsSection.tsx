@@ -40,9 +40,9 @@ export function SolutionsSection() {
       {/* Background de Alta Qualidade */}
       <div className="absolute inset-0 z-0 bg-[#040608] pointer-events-none" />
 
-      {/* Background Mesh/Grid Tecnológico Sutil com Fade Real */}
+      {/* Background Dots/Pontilhado Tecnológico */}
       <div
-        className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none mix-blend-overlay opacity-50"
+        className="absolute inset-0 z-0 bg-[radial-gradient(#ffffff18_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none opacity-80"
         style={{
           maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
           WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)'
@@ -132,7 +132,7 @@ export function SolutionsSection() {
                   <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-black/30 pointer-events-none" />
                   
                   {/* Badge da imagem (Canto superior direito) */}
-                  <div className="absolute top-6 right-6 bg-primary text-white px-6 py-2 rounded-full font-bold text-sm shadow-lg backdrop-blur-md">
+                  <div className="absolute top-6 right-6 bg-primary text-white px-6 py-2 rounded-full font-bold text-sm shadow-lg backdrop-blur-sm md:backdrop-blur-md">
                     {activeTab.badge}
                   </div>
                   

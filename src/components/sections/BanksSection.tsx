@@ -61,7 +61,7 @@ export function BanksSection() {
       `}</style>
 
       {/* Glow Suave super sutil */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[1000px] h-[500px] bg-primary/5 blur-[120px] rounded-[100%] pointer-events-none z-0" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[1000px] h-[500px] bg-primary/5 blur-[60px] md:blur-[120px] rounded-[100%] pointer-events-none z-0" />
 
       <div className="container mx-auto px-4 relative z-10 w-full mb-12 sm:mb-16">
         <div className="relative max-w-4xl mx-auto text-center">

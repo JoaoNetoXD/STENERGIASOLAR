@@ -51,7 +51,7 @@ export function FaqSection() {
       </div>
       
       {/* Subtle glow */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 blur-[120px] rounded-full pointer-events-none z-0" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 blur-[60px] md:blur-[120px] rounded-full pointer-events-none z-0" />
 
       <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10 max-w-4xl">
         
@@ -78,7 +78,7 @@ export function FaqSection() {
                 whileTap={{ scale: 0.98 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1, duration: 0.4 }}
-                className={`border rounded-xl overflow-hidden transition-all duration-300 backdrop-blur-md ${isOpen ? 'border-primary shadow-[0_0_20px_rgba(249,115,22,0.15)] bg-card/85' : 'border-border/50 bg-card/40 hover:border-primary/50 hover:bg-card/70'}`}
+                className={`border rounded-xl overflow-hidden transition-all duration-300 backdrop-blur-sm md:backdrop-blur-md ${isOpen ? 'border-primary shadow-[0_0_20px_rgba(249,115,22,0.15)] bg-card/85' : 'border-border/50 bg-card/40 hover:border-primary/50 hover:bg-card/70'}`}
               >
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : index)}

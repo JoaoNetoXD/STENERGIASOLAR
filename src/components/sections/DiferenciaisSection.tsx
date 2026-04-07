@@ -39,7 +39,7 @@ export function DiferenciaisSection() {
       />
 
       {/* Glow Radial central para atrair o olhar */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] h-[600px] bg-primary/10 blur-[130px] rounded-[100%] pointer-events-none z-0" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] h-[600px] bg-primary/10 blur-[60px] md:blur-[130px] rounded-[100%] pointer-events-none z-0" />
 
       <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
         <SectionHeader
