@@ -55,8 +55,10 @@ export function BanksSection() {
           width: max-content;
           animation: scroll 28s linear infinite;
         }
-        .animate-marquee:hover {
-          animation-play-state: paused;
+        @media (hover: hover) and (pointer: fine) {
+          .animate-marquee:hover {
+            animation-play-state: paused;
+          }
         }
       `}</style>
 
