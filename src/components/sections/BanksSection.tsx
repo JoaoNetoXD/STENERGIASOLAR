@@ -20,7 +20,7 @@ export function BanksSection() {
   const marqueeBanks = [...banks, ...banks];
 
   return (
-    <section className="py-16 sm:py-20 md:py-24 bg-[#070b10] relative w-full">
+    <section className="py-16 sm:py-20 md:py-24 bg-[#070b10] relative w-full" id="parceiros">
       {/* Background Image with Dark Overlay and Section Smoothing Fades */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         {/* Desktop Image */}

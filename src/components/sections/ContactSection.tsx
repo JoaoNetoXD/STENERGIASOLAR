@@ -49,11 +49,13 @@ export function ContactSection() {
             <span>47 simulações realizadas hoje</span>
           </div>
 
-          <Button 
-            className="bg-primary hover:bg-primary/90 text-white text-sm sm:text-lg px-8 sm:px-12 py-6 rounded-xl uppercase tracking-widest font-black animate-pulse-glow hover:scale-105 transition-all w-full sm:w-auto"
-          >
-            Quero Meu Projeto Solar Gratuito
-          </Button>
+          <a href="https://wa.me/5598999999999?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20projeto%20solar%20gratuito." target="_blank" rel="noreferrer" className="w-full sm:w-auto inline-block">
+            <Button 
+              className="bg-primary hover:bg-primary/90 text-white text-sm sm:text-lg px-8 sm:px-12 py-6 rounded-xl uppercase tracking-widest font-black animate-pulse-glow hover:scale-105 transition-all w-full sm:w-auto"
+            >
+              Quero Meu Projeto Solar Gratuito
+            </Button>
+          </a>
         </motion.div>
       </div>
     </section>

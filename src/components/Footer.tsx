@@ -18,16 +18,16 @@ export function Footer() {
               Mais de 30 anos de infraestrutura sólida e 2000 projetos entregues. Somos a maior referência em transição energética do Norte e Nordeste.
             </p>
             <div className="flex items-center gap-3">
-              <a href="#" className="w-10 h-10 rounded-full bg-card/50 flex items-center justify-center border border-border hover:border-primary hover:text-primary transition-all">
+              <a href="https://instagram.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-card/50 flex items-center justify-center border border-border hover:border-primary hover:text-primary transition-all">
                 <Instagram size={18} />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-card/50 flex items-center justify-center border border-border hover:border-primary hover:text-primary transition-all">
+              <a href="https://facebook.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-card/50 flex items-center justify-center border border-border hover:border-primary hover:text-primary transition-all">
                 <Facebook size={18} />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-card/50 flex items-center justify-center border border-border hover:border-primary hover:text-primary transition-all">
+              <a href="https://youtube.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-card/50 flex items-center justify-center border border-border hover:border-primary hover:text-primary transition-all">
                 <Youtube size={18} />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-card/50 flex items-center justify-center border border-border hover:border-primary hover:text-primary transition-all">
+              <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-card/50 flex items-center justify-center border border-border hover:border-primary hover:text-primary transition-all">
                 <Linkedin size={18} />
               </a>
             </div>
@@ -47,13 +47,17 @@ export function Footer() {
           <div>
              <h4 className="font-heading font-bold text-lg mb-6 text-white drop-shadow-sm">Contato</h4>
              <ul className="space-y-4">
-               <li className="flex items-start gap-3 text-zinc-300 font-medium text-sm hover:text-primary transition-colors cursor-pointer">
-                 <Phone size={16} className="mt-0.5 text-primary flex-shrink-0" />
-                 <span>Comercial e WhatsApp<br/><span className="text-xs opacity-60">Atendimento agilizado</span></span>
+               <li className="hover:text-primary transition-colors cursor-pointer">
+                 <a href="https://wa.me/5598999999999?text=Ol%C3%A1!%20Gostaria%20de%20iniciar%20meu%20projeto." target="_blank" rel="noreferrer" className="flex items-start gap-3 w-full text-zinc-300 hover:text-primary">
+                   <Phone size={16} className="mt-0.5 text-primary flex-shrink-0" />
+                   <span>Comercial e WhatsApp<br/><span className="text-xs opacity-60">Atendimento agilizado</span></span>
+                 </a>
                </li>
                <li className="flex items-center gap-3 text-zinc-300 font-medium text-sm hover:text-primary transition-colors cursor-pointer">
-                 <Mail size={16} className="text-primary flex-shrink-0" />
-                 contato@stenergia.com.br
+                 <a href="mailto:contato@stenergia.com.br" className="flex items-center gap-3 w-full text-zinc-300 hover:text-primary">
+                   <Mail size={16} className="text-primary flex-shrink-0" />
+                   contato@stenergia.com.br
+                 </a>
                </li>
              </ul>
           </div>
@@ -68,13 +72,13 @@ export function Footer() {
              </ul>
              
              {/* Small Map Reference */}
-             <div className="w-full h-24 bg-card rounded-lg overflow-hidden border border-border/50 relative group cursor-pointer">
+             <a href="https://maps.google.com/?q=São+Luís,+MA" target="_blank" rel="noreferrer" className="block w-full h-24 bg-card rounded-lg overflow-hidden border border-border/50 relative group cursor-pointer">
                <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=400&auto=format&fit=crop" alt="Localização ST Energia" className="w-full h-full object-cover opacity-50 group-hover:opacity-80 transition-opacity grayscale group-hover:grayscale-0" />
                <div className="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors" />
                <div className="absolute inset-0 flex items-center justify-center">
                  <span className="bg-background/90 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1 shadow-orange">Ver no Maps <ArrowUpRight size={12} /></span>
                </div>
-             </div>
+             </a>
           </div>
 
         </div>
