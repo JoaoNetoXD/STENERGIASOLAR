@@ -64,7 +64,7 @@ export function InvestReasonsSection() {
               key={index} 
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.4, delay: index * 0.08 }}
               className="bg-[#0a1015] md:bg-[#ffffff04] border border-[#ffffff10] md:backdrop-blur-sm rounded-2xl md:rounded-3xl py-6 px-4 md:p-8 flex flex-col items-center text-center group shadow-[0_8px_30px_rgb(0,0,0,0.3)] hover:border-primary/40 hover:bg-gradient-to-b hover:from-[#ffffff08] hover:to-[#ffffff02] hover:shadow-[0_0_30px_rgba(249,115,22,0.12)] hover:-translate-y-2 transition-all duration-300 w-full relative overflow-hidden justify-center min-h-[220px] md:min-h-[300px]"
             >

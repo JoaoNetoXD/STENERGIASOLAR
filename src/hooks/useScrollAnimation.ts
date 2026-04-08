@@ -3,11 +3,11 @@ import { useEffect } from 'react';
 export function useScrollAnimation() {
   useEffect(() => {
     // Defines threshold based on device screen width
-    const isMobile = window.innerWidth < 768;
+    // Aumentamos o offset para 20% para a animação disparar um pouco depois
     const observerOptions = {
       root: null,
       rootMargin: '0px',
-      threshold: isMobile ? 0.1 : 0.2
+      threshold: 0.2
     };
 
     const handleIntersect = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {

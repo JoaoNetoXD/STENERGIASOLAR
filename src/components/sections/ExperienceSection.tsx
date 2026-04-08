@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Button } from '../ui/Button'
 import { Star } from 'lucide-react'
+import { useInView } from 'framer-motion'
 import vid1 from '../../assets/video 01.mp4'
 import vid2 from '../../assets/video 02.mp4'
 import vid3 from '../../assets/video 03.mp4'
@@ -55,6 +56,9 @@ export function ExperienceSection() {
     window.addEventListener('resize', check);
     return () => window.removeEventListener('resize', check);
   }, []);
+
+  const videoRef = useRef<HTMLDivElement>(null);
+  const isVideoInView = useInView(videoRef, { once: true, amount: 0.1 });
 
   // Parallax — only on desktop
   const { scrollYProgress } = useScroll({
@@ -140,8 +144,8 @@ export function ExperienceSection() {
               {/* Stat 1 */}
               <div className="p-3 sm:p-6 flex flex-col items-center justify-center text-center group hover:bg-white/5 transition-colors relative">
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-                <div className="font-heading font-black text-2xl sm:text-4xl md:text-5xl text-white mb-1 flex items-end justify-center gap-0.5 sm:gap-1 relative z-10 group-hover:-translate-y-1 transition-transform duration-300">
-                  <AnimatedNumber value={30} /><span className="text-xs sm:text-xl text-primary font-bold mb-0 sm:mb-1">Anos</span>
+                <div className="font-heading font-black text-4xl sm:text-4xl md:text-5xl text-white mb-1 flex items-end justify-center gap-0.5 sm:gap-1 relative z-10 group-hover:-translate-y-1 transition-transform duration-300">
+                  <AnimatedNumber value={30} /><span className="text-sm sm:text-xl text-primary font-bold mb-0 sm:mb-1">Anos</span>
                 </div>
                 <p className="text-[10px] sm:text-xs md:text-sm font-bold text-zinc-400 relative z-10 tracking-[0.1em] uppercase leading-tight h-[28px] sm:h-auto flex items-center justify-center">De História</p>
               </div>
@@ -149,8 +153,8 @@ export function ExperienceSection() {
               {/* Stat 2 */}
               <div className="p-3 sm:p-6 flex flex-col items-center justify-center text-center group hover:bg-white/5 transition-colors relative">
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-                <div className="font-heading font-black text-2xl sm:text-4xl md:text-5xl text-white mb-1 flex items-end justify-center gap-0.5 sm:gap-1 relative z-10 group-hover:-translate-y-1 transition-transform duration-300">
-                  <AnimatedNumber value={2000} duration={2500} /><span className="text-base sm:text-3xl text-primary font-bold mb-0 sm:mb-1">+</span>
+                <div className="font-heading font-black text-3xl sm:text-4xl md:text-5xl text-white mb-1 flex items-end justify-center gap-0.5 sm:gap-1 relative z-10 group-hover:-translate-y-1 transition-transform duration-300">
+                  <AnimatedNumber value={2000} duration={2500} /><span className="text-xl sm:text-3xl text-primary font-bold mb-0 sm:mb-1">+</span>
                 </div>
                 <p className="text-[10px] sm:text-xs md:text-sm font-bold text-zinc-400 relative z-10 tracking-[0.1em] uppercase leading-tight h-[28px] sm:h-auto flex items-center justify-center">Projetos Ativos</p>
               </div>
@@ -158,7 +162,7 @@ export function ExperienceSection() {
               {/* Stat 3 */}
               <div className="p-3 sm:p-6 flex flex-col items-center justify-center text-center group hover:bg-white/5 transition-colors relative">
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-                <div className="font-heading font-black text-2xl sm:text-4xl md:text-5xl text-white mb-1 flex items-center justify-center gap-0.5 sm:gap-1 relative z-10 group-hover:-translate-y-1 transition-transform duration-300">
+                <div className="font-heading font-black text-3xl sm:text-4xl md:text-5xl text-white mb-1 flex items-center justify-center gap-0.5 sm:gap-1 relative z-10 group-hover:-translate-y-1 transition-transform duration-300">
                   4.<AnimatedNumber value={9} duration={1500} /><Star size={14} className="text-primary fill-primary ml-0.5 drop-shadow-[0_0_10px_rgba(249,115,22,0.8)] sm:w-6 sm:h-6" />
                 </div>
                 <p className="text-[10px] sm:text-xs md:text-sm font-bold text-zinc-400 relative z-10 tracking-[0.1em] uppercase leading-tight h-[28px] sm:h-auto flex items-center justify-center">Avaliação Média</p>
@@ -180,37 +184,41 @@ export function ExperienceSection() {
             className="relative h-[450px] sm:h-[600px] w-full rounded-2xl overflow-hidden shadow-2xl group cursor-pointer border border-border/50"
           >
             {/* Grid Collage */}
-            <div className="grid grid-cols-2 grid-rows-2 gap-2 w-full h-full p-2 bg-background/50">
-              <div className="col-span-1 row-span-2 relative rounded-xl overflow-hidden">
-                <video
-                  src={vid3}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-              </div>
-              <div className="col-span-1 row-span-1 relative rounded-xl overflow-hidden">
-                <video
-                  src={vid2}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-              </div>
-              <div className="col-span-1 row-span-1 relative rounded-xl overflow-hidden">
-                <video
-                  src={vid1}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-              </div>
+            <div ref={videoRef} className="grid grid-cols-2 grid-rows-2 gap-2 w-full h-full p-2 bg-background/50">
+              {isVideoInView && (
+                <>
+                  <div className="col-span-1 row-span-2 relative rounded-xl overflow-hidden">
+                    <video
+                      src={vid3}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="col-span-1 row-span-1 relative rounded-xl overflow-hidden">
+                    <video
+                      src={vid2}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="col-span-1 row-span-1 relative rounded-xl overflow-hidden">
+                    <video
+                      src={vid1}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  </div>
+                </>
+              )}
             </div>
 
             {/* Vignette overlay */}

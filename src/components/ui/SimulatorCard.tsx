@@ -84,7 +84,7 @@ export function SimulatorCard() {
   }
 
   return (
-    <div className="relative bg-white dark:bg-card border border-border shadow-2xl rounded-2xl overflow-hidden w-full max-w-lg mx-auto">
+    <div className="relative bg-card border border-border/50 shadow-2xl rounded-2xl overflow-hidden w-full max-w-lg mx-auto backdrop-blur-sm">
       {/* Progress Bar Header */}
       {step < 3 && (
         <div className="w-full bg-secondary/50 h-1.5 flex">
@@ -118,10 +118,11 @@ export function SimulatorCard() {
                     required 
                     autoFocus
                     type="text" 
+                    inputMode="numeric"
                     placeholder="R$ 0,00" 
                     value={formData.valorConta}
                     onChange={handleCurrencyChange}
-                    className="w-full bg-secondary/30 border border-border rounded-xl pl-12 pr-4 py-4 text-xl sm:text-2xl font-black text-primary focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all placeholder:text-[#6b7280] dark:placeholder:text-[#52525B]" 
+                    className="w-full bg-secondary/30 border border-border rounded-xl pl-12 pr-4 py-5 text-xl sm:text-2xl font-black text-primary focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all placeholder:text-white/20" 
                   />
                 </div>
               </div>
@@ -136,7 +137,7 @@ export function SimulatorCard() {
                     placeholder="Seu nome completo" 
                     value={formData.nome} 
                     onChange={e => setFormData({...formData, nome: e.target.value})} 
-                    className="w-full bg-secondary/30 border border-border rounded-xl pl-12 pr-4 py-4 text-base text-foreground focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all placeholder:text-muted-foreground/40" 
+                    className="w-full bg-secondary/30 border border-border rounded-xl pl-12 pr-4 py-4 text-base text-foreground focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all placeholder:text-white/20" 
                   />
                 </div>
               </div>
@@ -184,7 +185,7 @@ export function SimulatorCard() {
                     placeholder="(00) 90000-0000" 
                     value={formData.celular} 
                     onChange={e => setFormData({...formData, celular: e.target.value})} 
-                    className="w-full bg-secondary/30 border border-border rounded-xl pl-12 pr-4 py-4 text-base text-foreground focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all placeholder:text-muted-foreground/40" 
+                    className="w-full bg-secondary/30 border border-border rounded-xl pl-12 pr-4 py-4 text-base text-foreground focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all placeholder:text-white/20" 
                   />
                 </div>
               </div>
@@ -199,7 +200,7 @@ export function SimulatorCard() {
                     placeholder="voce@email.com.br" 
                     value={formData.email} 
                     onChange={e => setFormData({...formData, email: e.target.value})} 
-                    className="w-full bg-secondary/30 border border-border rounded-xl pl-12 pr-4 py-4 text-base text-foreground focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all placeholder:text-muted-foreground/40" 
+                    className="w-full bg-secondary/30 border border-border rounded-xl pl-12 pr-4 py-4 text-base text-foreground focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all placeholder:text-white/20" 
                   />
                 </div>
               </div>
