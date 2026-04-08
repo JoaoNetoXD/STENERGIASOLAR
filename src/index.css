@@ -36,12 +36,16 @@
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 100px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   * {
     @apply border-border;
   }
   body {
     @apply bg-background text-foreground font-sans;
+    /* Enable hardware compositing for smoother scrolling */
+    -webkit-overflow-scrolling: touch;
   }
 }
 
@@ -89,10 +93,12 @@
     box-shadow: 0 0 30px hsl(24, 95%, 53% / 0.15);
   }
 
-  /* --- Scroll Animations Base Logic --- */
+  /* --- GPU-Accelerated Scroll Animations --- */
   [data-anim] {
     opacity: 0;
     will-change: transform, opacity;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
   
   [data-anim].is-visible {
@@ -101,29 +107,45 @@
   
   /* Tipo: fade-up */
   [data-anim="fade-up"] {
-    transform: translateY(40px);
-    transition: opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1), transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+    transform: translate3d(0, 30px, 0);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   }
   [data-anim="fade-up"].is-visible {
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
   
   /* Tipo: fade-left */
   [data-anim="fade-left"] {
-    transform: translateX(40px);
-    transition: opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1), transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+    transform: translate3d(30px, 0, 0);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   }
   [data-anim="fade-left"].is-visible {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   
   /* Tipo: fade-right */
   [data-anim="fade-right"] {
-    transform: translateX(-40px);
-    transition: opacity 0.8s cubic-bezier(0.19, 1, 0.22, 1), transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+    transform: translate3d(-30px, 0, 0);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   }
   [data-anim="fade-right"].is-visible {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  /* Mobile: faster, shorter animations */
+  @media (max-width: 767px) {
+    [data-anim="fade-up"] {
+      transform: translate3d(0, 20px, 0);
+      transition-duration: 0.45s;
+    }
+    [data-anim="fade-left"] {
+      transform: translate3d(20px, 0, 0);
+      transition-duration: 0.45s;
+    }
+    [data-anim="fade-right"] {
+      transform: translate3d(-20px, 0, 0);
+      transition-duration: 0.45s;
+    }
   }
   
   /* Tipo: stagger containers and children */
@@ -132,38 +154,36 @@
   }
   [data-anim="stagger-item"] {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s cubic-bezier(0.19, 1, 0.22, 1), transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    transform: translate3d(0, 24px, 0);
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    backface-visibility: hidden;
   }
   [data-anim="stagger-container"].is-visible [data-anim="stagger-item"] {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
   @media (min-width: 768px) {
-    /* Desktop: enter from left to right (using translate X optionally, or keeping Y. the delay handles the direction) */
     [data-anim="stagger-container"].is-visible.desktop-left-right [data-anim="stagger-item"] {
       animation-name: desktopCascade;
-      animation-duration: 0.6s;
+      animation-duration: 0.5s;
       animation-fill-mode: both;
-      animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
-      /* animation-delay is set inline or via nth-child */
+      animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
     }
     @keyframes desktopCascade {
-      0% { opacity: 0; transform: translateX(-30px); }
-      100% { opacity: 1; transform: translateX(0); }
+      0% { opacity: 0; transform: translate3d(-24px, 0, 0); }
+      100% { opacity: 1; transform: translate3d(0, 0, 0); }
     }
   }
   @media (max-width: 767px) {
-    /* Mobile: enter from bottom to top sequentially */
     [data-anim="stagger-container"].is-visible.mobile-bottom-top [data-anim="stagger-item"] {
       animation-name: mobileCascade;
-      animation-duration: 0.6s;
+      animation-duration: 0.4s;
       animation-fill-mode: both;
-      animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+      animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
     }
     @keyframes mobileCascade {
-      0% { opacity: 0; transform: translateY(30px); }
-      100% { opacity: 1; transform: translateY(0); }
+      0% { opacity: 0; transform: translate3d(0, 20px, 0); }
+      100% { opacity: 1; transform: translate3d(0, 0, 0); }
     }
   }
 
@@ -173,28 +193,52 @@
     100% { transform: translateX(100%); }
   }
 
-  /* Float animation for CTA icons */
+  /* Float animation — GPU accelerated */
   @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-8px); }
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50% { transform: translate3d(0, -6px, 0); }
   }
   .animate-float {
     animation: float 3s ease-in-out infinite;
+    will-change: transform;
   }
 
   /* Pulse glow for CTA buttons */
   @keyframes pulse-glow {
-    0%, 100% { box-shadow: 0 0 20px rgba(249, 115, 22, 0.3); }
-    50% { box-shadow: 0 0 40px rgba(249, 115, 22, 0.6), 0 0 60px rgba(249, 115, 22, 0.2); }
+    0%, 100% { box-shadow: 0 0 15px rgba(249, 115, 22, 0.25); }
+    50% { box-shadow: 0 0 30px rgba(249, 115, 22, 0.5); }
   }
   .animate-pulse-glow {
     animation: pulse-glow 2.5s ease-in-out infinite;
+  }
+  /* Reduce glow intensity on mobile */
+  @media (max-width: 767px) {
+    .animate-pulse-glow {
+      animation-duration: 3s;
+    }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 12px rgba(249, 115, 22, 0.2); }
+      50% { box-shadow: 0 0 20px rgba(249, 115, 22, 0.35); }
+    }
   }
 
   /* Mobile hero responsiveness */
   @media (max-width: 374px) {
     .hero-title {
       font-size: 2.8rem !important;
+    }
+  }
+
+  /* Respect reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    [data-anim] {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+    .animate-float,
+    .animate-pulse-glow {
+      animation: none !important;
     }
   }
 }

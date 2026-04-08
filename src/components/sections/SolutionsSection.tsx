@@ -42,7 +42,7 @@ export function SolutionsSection() {
 
       {/* Background Dots/Pontilhado Tecnológico */}
       <div
-        className="absolute inset-0 z-0 bg-[radial-gradient(#ffffff18_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none opacity-80"
+        className="absolute inset-0 z-0 bg-[radial-gradient(#ffffff18_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none opacity-80 hidden sm:block"
         style={{
           maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
           WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)'
@@ -132,13 +132,13 @@ export function SolutionsSection() {
                   <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-black/30 pointer-events-none" />
                   
                   {/* Badge da imagem (Canto superior direito) */}
-                  <div className="absolute top-6 right-6 bg-primary text-white px-6 py-2 rounded-full font-bold text-sm shadow-lg backdrop-blur-sm md:backdrop-blur-md">
+                  <div className="absolute top-6 right-6 bg-primary text-white px-6 py-2 rounded-full font-bold text-sm shadow-lg">
                     {activeTab.badge}
                   </div>
                   
                   {/* Descrição específica sobre a imagem */}
                   <div className="absolute bottom-6 left-6 right-6">
-                    <p className="text-white text-base md:text-lg drop-shadow-md border-l-4 border-primary pl-4 font-medium backdrop-blur-sm bg-black/20 py-2 py-3 rounded-r-md">
+                    <p className="text-white text-base md:text-lg drop-shadow-md border-l-4 border-primary pl-4 font-medium bg-black/40 md:backdrop-blur-sm py-2 py-3 rounded-r-md">
                       {activeTab.description}
                     </p>
                   </div>
@@ -147,7 +147,7 @@ export function SolutionsSection() {
             </div>
             
             {/* Efeito Glow para dar vida, sutil */}
-            <div className="absolute -inset-4 bg-primary/10 blur-[80px] -z-10 rounded-full" />
+            <div className="absolute -inset-4 bg-primary/8 blur-[50px] md:blur-[80px] -z-10 rounded-full" />
             
           </div>
 

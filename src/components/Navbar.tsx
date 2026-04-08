@@ -21,7 +21,7 @@ export function Navbar() {
     <>
       <header className={cn(
         "fixed top-0 w-full z-50 transition-all duration-500",
-        scrolled ? "bg-background/90 backdrop-blur-xl border-b border-primary/10 shadow-[0_4px_30px_rgba(0,0,0,0.3)] py-3" : "bg-transparent py-6"
+        scrolled ? "bg-background/95 md:bg-background/90 md:backdrop-blur-lg border-b border-primary/10 shadow-[0_4px_30px_rgba(0,0,0,0.3)] py-3" : "bg-transparent py-6"
       )}>
         <div className="container mx-auto px-4 sm:px-6 md:px-8 flex items-center justify-between">
           <div className="cursor-pointer flex items-center">
@@ -50,7 +50,7 @@ export function Navbar() {
             initial={{ opacity: 0, x: -15 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -15 }}
-            className="fixed inset-0 z-40 bg-background/98 backdrop-blur-lg flex flex-col items-center justify-center pt-20"
+            className="fixed inset-0 z-40 bg-background/98 flex flex-col items-center justify-center pt-20"
           >
             <nav className="flex flex-col items-center gap-8 text-xl">
               <a href="#sobre" onClick={() => setMobileMenu(false)} className="text-foreground hover:text-primary font-bold">Sobre Nós</a>

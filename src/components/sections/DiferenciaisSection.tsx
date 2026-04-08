@@ -2,22 +2,22 @@ import React from 'react'
 import { SectionHeader } from '../ui/SectionHeader'
 const features = [
   {
-    image: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?q=80&w=2070&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?q=80&w=2069&auto=format&fit=crop',
     title: 'Equipe Especializada',
     description: 'Profissionais capacitados e certificados para garantir a máxima segurança na instalação.'
   },
   {
-    image: 'https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?q=80&w=1937&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2072&auto=format&fit=crop',
     title: 'Proteção & Garantia',
     description: 'Até 10 anos de garantia nos módulos solares e suporte técnico prioritário.'
   },
   {
-    image: 'https://images.unsplash.com/photo-1616423640778-28d1b53229bd?q=80&w=2070&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
     title: 'Controle no App',
     description: 'Acompanhe a sua economia de energia em tempo real pela tela do seu smartphone.'
   },
   {
-    image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=2070&auto=format&fit=crop',
     title: 'Financiamento Fácil',
     description: 'As melhores taxas de mercado com prazos estendidos e carência para pagar.'
   }
@@ -31,7 +31,7 @@ export function DiferenciaisSection() {
 
       {/* Background Dots/Pontilhado Tecnológico */}
       <div
-        className="absolute inset-0 z-0 bg-[radial-gradient(#ffffff18_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none opacity-80"
+        className="absolute inset-0 z-0 bg-[radial-gradient(#ffffff18_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none opacity-80 hidden sm:block"
         style={{
           maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
           WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)'
@@ -39,7 +39,7 @@ export function DiferenciaisSection() {
       />
 
       {/* Glow Radial central para atrair o olhar */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] h-[600px] bg-primary/10 blur-[60px] md:blur-[130px] rounded-[100%] pointer-events-none z-0" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[500px] md:max-w-[800px] h-[400px] md:h-[600px] bg-primary/10 blur-[40px] md:blur-[100px] rounded-[100%] pointer-events-none z-0" />
 
       <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
         <SectionHeader

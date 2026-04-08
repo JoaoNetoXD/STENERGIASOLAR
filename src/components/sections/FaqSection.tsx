@@ -51,7 +51,7 @@ export function FaqSection() {
       </div>
       
       {/* Subtle glow */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 blur-[60px] md:blur-[120px] rounded-full pointer-events-none z-0" />
+      <div className="absolute top-0 right-0 w-72 h-72 md:w-96 md:h-96 bg-primary/5 blur-[40px] md:blur-[100px] rounded-full pointer-events-none z-0" />
 
       <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10 max-w-4xl">
         
@@ -72,13 +72,11 @@ export function FaqSection() {
             return (
               <motion.div 
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                whileHover={{ scale: 1.01 }}
-                whileTap={{ scale: 0.98 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.4 }}
-                className={`border rounded-xl overflow-hidden transition-all duration-300 backdrop-blur-sm md:backdrop-blur-md ${isOpen ? 'border-primary shadow-[0_0_20px_rgba(249,115,22,0.15)] bg-card/85' : 'border-border/50 bg-card/40 hover:border-primary/50 hover:bg-card/70'}`}
+                transition={{ delay: index * 0.07, duration: 0.35 }}
+                className={`border rounded-xl overflow-hidden transition-all duration-300 ${isOpen ? 'border-primary shadow-[0_0_15px_rgba(249,115,22,0.12)] bg-[#111a22]/95 md:bg-card/85 md:backdrop-blur-sm' : 'border-border/50 bg-[#0c1318]/90 md:bg-card/40 md:backdrop-blur-sm hover:border-primary/50 hover:bg-[#111a22]'}`}
               >
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : index)}

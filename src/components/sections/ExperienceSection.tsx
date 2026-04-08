@@ -1,12 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Button } from '../ui/Button'
-import { ShieldCheck, Zap, Star } from 'lucide-react'
-import { Card } from '../ui/Card'
-import bgExperience from '../../assets/05 SEÇÃO.jpg'
-import vid1 from '../../assets/video 01.MOV'
-import vid2 from '../../assets/video 02.MOV'
-import vid3 from '../../assets/video 03.MOV'
+import { Star } from 'lucide-react'
+import vid1 from '../../assets/video 01.mp4'
+import vid2 from '../../assets/video 02.mp4'
+import vid3 from '../../assets/video 03.mp4'
 
 function AnimatedNumber({ value, duration = 2000 }: { value: number, duration?: number }) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -21,7 +19,7 @@ function AnimatedNumber({ value, duration = 2000 }: { value: number, duration?: 
           const step = (timestamp: number) => {
             if (!startTimestamp) startTimestamp = timestamp;
             const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-            const ease = 1 - Math.pow(1 - progress, 4); // easeOutQuart
+            const ease = 1 - Math.pow(1 - progress, 4);
             if (ref.current) {
               ref.current.textContent = Math.floor(ease * value).toString();
             }
@@ -49,8 +47,16 @@ function AnimatedNumber({ value, duration = 2000 }: { value: number, duration?: 
 
 export function ExperienceSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
   
-  // Sincronização do Sol com o Scroll (Parallax)
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
+  // Parallax — only on desktop
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"]
@@ -63,50 +69,55 @@ export function ExperienceSection() {
   return (
     <section ref={sectionRef} className="relative w-full pt-16 pb-10 sm:pt-20 sm:pb-12 md:pt-24 md:pb-16" id="sobre">
 
-      {/* Extensão do background não é mais necessária pois removemos o z-20 e isolamento de contexto */}
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#0b141a] via-[#070b10] to-[#040608] pointer-events-none" />
 
-      {/* Background Dots/Pontilhado Tecnológico */}
+      {/* Background Dots — hidden on mobile for performance */}
       <div
-        className="absolute inset-0 z-0 bg-[radial-gradient(#ffffff18_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none opacity-80"
+        className="absolute inset-0 z-0 bg-[radial-gradient(#ffffff18_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none opacity-80 hidden sm:block"
         style={{
           maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
           WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)'
         }}
       />
 
-      {/* EFEITO DO SOL CARACTERIZADO EM PARALLAX */}
-      <motion.div
-        className="absolute -right-[380px] sm:-right-[100px] md:-right-[5%] lg:right-[2%] top-[5%] sm:top-[10%] w-[600px] h-[600px] pointer-events-none z-[5] mix-blend-screen flex items-center justify-center transform-gpu opacity-50 sm:opacity-100"
-        style={{ y: sunY, scale: sunScale, rotate: sunRotate }}
-      >
-        {/* Glow Extenso de Fundo */}
-        <div className="absolute w-[800px] h-[800px] bg-[#ff8a00]/20 rounded-full blur-[60px] md:blur-[140px] mix-blend-screen" />
-        
-        {/* Halo Orbital Laranja */}
-        <div className="absolute w-[350px] h-[350px] border-[4px] border-[#ff8a00]/40 rounded-full blur-[8px] mix-blend-screen" />
+      {/* SOL PARALLAX — Simplified on mobile, full on desktop */}
+      {!isMobile ? (
+        <motion.div
+          className="absolute -right-[5%] lg:right-[2%] top-[10%] w-[600px] h-[600px] pointer-events-none z-[5] flex items-center justify-center transform-gpu"
+          style={{ y: sunY, scale: sunScale, rotate: sunRotate }}
+        >
+          {/* Glow de Fundo — reduced blur */}
+          <div className="absolute w-[600px] h-[600px] bg-[#ff8a00]/15 rounded-full blur-[100px]" />
+          
+          {/* Halo Orbital */}
+          <div className="absolute w-[300px] h-[300px] border-[3px] border-[#ff8a00]/30 rounded-full blur-[6px]" />
 
-        {/* Flares (Raios Diretos) */}
-        <div className="absolute w-[800px] h-[4px] bg-gradient-to-r from-transparent via-white/50 to-transparent blur-[2px] mix-blend-screen" />
-        <div className="absolute w-[4px] h-[800px] bg-gradient-to-b from-transparent via-white/50 to-transparent blur-[2px] mix-blend-screen" />
-        <div className="absolute w-[800px] h-[4px] bg-gradient-to-r from-transparent via-[#ffdb70]/30 to-transparent blur-[4px] mix-blend-screen rotate-45" />
-        <div className="absolute w-[4px] h-[800px] bg-gradient-to-b from-transparent via-[#ffdb70]/30 to-transparent blur-[4px] mix-blend-screen rotate-45" />
+          {/* Flares — only 2 for performance */}
+          <div className="absolute w-[700px] h-[3px] bg-gradient-to-r from-transparent via-white/40 to-transparent blur-[2px]" />
+          <div className="absolute w-[3px] h-[700px] bg-gradient-to-b from-transparent via-white/40 to-transparent blur-[2px]" />
 
-        {/* Coroa Solar Translúcida */}
-        <div className="absolute w-[220px] h-[220px] bg-[#ffdb70] opacity-70 rounded-full blur-[30px] mix-blend-screen" />
+          {/* Corona */}
+          <div className="absolute w-[200px] h-[200px] bg-[#ffdb70] opacity-60 rounded-full blur-[25px]" />
 
-        {/* Núcleo Real do Sol (Corpo Celeste) */}
-        <div className="absolute w-[120px] h-[120px] bg-[#ffffff] rounded-full blur-[3px] shadow-[0_0_80px_#ffffff,_0_0_120px_#ffdb70,_0_0_200px_#ff8a00]" />
-      </motion.div>
+          {/* Core */}
+          <div className="absolute w-[110px] h-[110px] bg-[#ffffff] rounded-full blur-[3px] shadow-[0_0_60px_#ffffff,_0_0_100px_#ffdb70,_0_0_160px_#ff8a00]" />
+        </motion.div>
+      ) : (
+        /* Mobile: static simplified sun glow — no parallax, no mix-blend */
+        <div className="absolute -right-[200px] top-[5%] w-[400px] h-[400px] pointer-events-none z-[5] flex items-center justify-center opacity-40">
+          <div className="absolute w-[300px] h-[300px] bg-[#ff8a00]/20 rounded-full blur-[40px]" />
+          <div className="absolute w-[80px] h-[80px] bg-[#ffffff] rounded-full blur-[3px] shadow-[0_0_40px_#ffffff,_0_0_60px_#ffdb70]" />
+        </div>
+      )}
 
-      {/* EFEITO LUZ DE PREENCHIMENTO */}
-      <div className="absolute -bottom-[10%] -left-[10%] w-[600px] h-[600px] bg-blue-500/5 blur-[60px] md:blur-[150px] rounded-full pointer-events-none z-0" />
+      {/* Fill light — reduced blur on mobile */}
+      <div className="absolute -bottom-[10%] -left-[10%] w-[400px] h-[400px] md:w-[600px] md:h-[600px] bg-blue-500/5 blur-[40px] md:blur-[120px] rounded-full pointer-events-none z-0" />
 
       <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12 items-center">
 
-          {/* Esquerda: Conteúdo e Estatísticas */}
+          {/* Left: Content */}
           <div data-anim="fade-right">
             <div className="flex items-center gap-3 mb-4">
               <div className="h-[2px] w-8 bg-primary rounded-full shadow-[0_0_8px_rgba(249,115,22,0.8)]"></div>
@@ -122,9 +133,9 @@ export function ExperienceSection() {
               Mais de duas décadas entregando economia e sustentabilidade para empresas e famílias em todo o Brasil. Nossa equipe 100% própria atua em infraestrutura sólida, acompanhando você da consultoria à ativação.
             </p>
 
-            {/* Estatísticas Numéricas (Layout unificado para Mobile e Desktop) */}
-            <div className="grid grid-cols-3 divide-x divide-white/10 bg-[#111a20]/90 backdrop-blur-sm md:backdrop-blur-md border border-white/10 rounded-2xl mb-10 sm:mb-12 shadow-2xl overflow-hidden relative">
-              <div className="absolute -left-10 -bottom-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl pointer-events-none"></div>
+            {/* Stats — NO backdrop-blur on mobile */}
+            <div className="grid grid-cols-3 divide-x divide-white/10 bg-[#111a20]/95 md:bg-[#111a20]/90 md:backdrop-blur-sm border border-white/10 rounded-2xl mb-10 sm:mb-12 shadow-2xl overflow-hidden relative">
+              <div className="absolute -left-10 -bottom-10 w-40 h-40 bg-primary/15 rounded-full blur-2xl md:blur-3xl pointer-events-none"></div>
               
               {/* Stat 1 */}
               <div className="p-3 sm:p-6 flex flex-col items-center justify-center text-center group hover:bg-white/5 transition-colors relative">
@@ -163,21 +174,21 @@ export function ExperienceSection() {
             </div>
           </div>
 
-          {/* Direita: Vídeos Institucionais / Imagem Equipe em Collage */}
+          {/* Right: Video Collage */}
           <div
             data-anim="fade-left"
             className="relative h-[450px] sm:h-[600px] w-full rounded-2xl overflow-hidden shadow-2xl group cursor-pointer border border-border/50"
           >
             {/* Grid Collage */}
-            <div className="grid grid-cols-2 grid-rows-2 gap-2 w-full h-full p-2 bg-background/50 backdrop-blur-sm">
+            <div className="grid grid-cols-2 grid-rows-2 gap-2 w-full h-full p-2 bg-background/50">
               <div className="col-span-1 row-span-2 relative rounded-xl overflow-hidden">
                 <video
-                  src={vid1}
+                  src={vid3}
                   autoPlay
                   muted
                   loop
                   playsInline
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="absolute inset-0 w-full h-full object-cover"
                 />
               </div>
               <div className="col-span-1 row-span-1 relative rounded-xl overflow-hidden">
@@ -187,30 +198,32 @@ export function ExperienceSection() {
                   muted
                   loop
                   playsInline
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="absolute inset-0 w-full h-full object-cover"
                 />
               </div>
               <div className="col-span-1 row-span-1 relative rounded-xl overflow-hidden">
                 <video
-                  src={vid3}
+                  src={vid1}
                   autoPlay
                   muted
                   loop
                   playsInline
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="absolute inset-0 w-full h-full object-cover"
                 />
               </div>
             </div>
 
-            {/* Overlays Escurecidos e Vignette */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,rgba(0,0,0,0.7)_100%)] bg-black/20 group-hover:bg-black/10 transition-colors pointer-events-none rounded-2xl" />
+            {/* Vignette overlay */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,rgba(0,0,0,0.6)_100%)] bg-black/15 pointer-events-none rounded-2xl" />
 
-            {/* Play Button Pulsante (Mais premium) */}
+            {/* Play Button — optimized pulse (no animate-ping on mobile) */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <div className="relative flex items-center justify-center">
-                <div className="absolute w-24 h-24 bg-primary/50 rounded-full animate-[ping_3s_ease-out_infinite]" />
-                <div className="absolute w-32 h-32 bg-primary/20 rounded-full animate-[ping_3s_ease-out_infinite]" style={{ animationDelay: '1s' }} />
-                <div className="relative w-20 h-20 bg-primary/90 backdrop-blur-sm md:backdrop-blur-md border-[2px] border-white/20 rounded-full flex items-center justify-center text-white shadow-[0_0_40px_rgba(249,115,22,0.6)] group-hover:bg-primary transition-all duration-300 group-hover:scale-110 z-10">
+                <div className="absolute w-24 h-24 bg-primary/40 rounded-full hidden md:block animate-[ping_3s_ease-out_infinite]" />
+                <div className="absolute w-32 h-32 bg-primary/15 rounded-full hidden md:block animate-[ping_3s_ease-out_infinite]" style={{ animationDelay: '1s' }} />
+                {/* Mobile: simple static glow ring instead of ping */}
+                <div className="absolute w-28 h-28 bg-primary/20 rounded-full md:hidden animate-pulse" />
+                <div className="relative w-20 h-20 bg-primary/90 border-[2px] border-white/20 rounded-full flex items-center justify-center text-white shadow-[0_0_30px_rgba(249,115,22,0.5)] z-10">
                   <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" className="ml-1 drop-shadow-md">
                     <path d="M8 5v14l11-7z" />
                   </svg>
@@ -218,9 +231,9 @@ export function ExperienceSection() {
               </div>
             </div>
 
-            {/* Label Inferior (Pill style premium) */}
+            {/* Label Inferior */}
             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-max max-w-[90%] pointer-events-none">
-              <div className="bg-black/40 backdrop-blur-sm md:backdrop-blur-xl border border-white/10 px-5 sm:px-6 py-3 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.5)] flex items-center gap-3">
+              <div className="bg-black/50 border border-white/10 px-5 sm:px-6 py-3 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.5)] flex items-center gap-3">
                  <div className="relative flex items-center justify-center w-2.5 h-2.5">
                    <span className="absolute inline-flex w-full h-full rounded-full bg-primary opacity-75 animate-ping"></span>
                    <span className="relative inline-flex rounded-full w-2.5 h-2.5 bg-primary"></span>

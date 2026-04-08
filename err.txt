@@ -1,1 +1,0 @@
-src/components/sections/AboutSection.tsx(57,21): error TS2322: Type '"outline"' is not assignable to type '"primary" | "secondary" | "ghost" | undefined'.

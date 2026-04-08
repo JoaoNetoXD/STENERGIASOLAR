@@ -10,7 +10,7 @@ export function SustainabilitySection() {
 
       {/* Background Dots/Pontilhado Tecnológico */}
       <div
-        className="absolute inset-0 z-0 bg-[radial-gradient(#ffffff18_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none opacity-80"
+        className="absolute inset-0 z-0 bg-[radial-gradient(#ffffff18_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none opacity-80 hidden sm:block"
         style={{
           maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)',
           WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)'
@@ -24,11 +24,11 @@ export function SustainabilitySection() {
             <h2 className="text-[12vw] sm:text-5xl md:text-6xl lg:text-[80px] font-heading font-black text-white mb-6 leading-[1.1] tracking-tight">
               Gerando <br />
               <span className="text-white relative inline-block">
-                Sustentabilida<span className="bg-white/10 text-white/50 px-2 rounded-lg inline-block mix-blend-screen ml-1 -rotate-2 origin-bottom shadow-lg backdrop-blur-sm md:backdrop-blur-md">de!</span>
+                Sustentabilida<span className="bg-white/10 text-white/50 px-2 rounded-lg inline-block ml-1 -rotate-2 origin-bottom shadow-lg">de!</span>
               </span>
             </h2>
 
-            <div className="bg-background/80 backdrop-blur-sm md:backdrop-blur-md border border-white/10 rounded-2xl p-6 mb-8 max-w-lg shadow-2xl relative overflow-hidden group">
+            <div className="bg-[#0b1218]/95 md:bg-background/80 md:backdrop-blur-sm border border-white/10 rounded-2xl p-6 mb-8 max-w-lg shadow-2xl relative overflow-hidden group">
               <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <p className="text-zinc-300 text-lg md:text-xl leading-relaxed relative z-10 text-left">
                 Além de economizar até <strong className="text-primary font-bold">95%</strong> na sua conta de energia, você ainda
@@ -50,10 +50,10 @@ export function SustainabilitySection() {
           <div className="w-full lg:w-1/2 flex justify-center lg:justify-end mt-10 lg:mt-0" data-anim="fade-left">
             <div className="relative w-full max-w-lg lg:max-w-xl aspect-square flex items-center justify-center">
 
-              <div className="absolute inset-0 bg-primary/20 blur-[60px] md:blur-[120px] rounded-full scale-75 animate-pulse-glow" />
+              <div className="absolute inset-0 bg-primary/15 blur-[40px] md:blur-[80px] rounded-full scale-75 animate-pulse-glow" />
 
               <motion.div
-                animate={{ y: [0, -15, 0] }}
+                animate={{ y: [0, -10, 0] }}
                 transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
                 className="relative w-80 h-80 sm:w-[400px] sm:h-[400px] md:w-[480px] md:h-[480px] z-10 flex items-center justify-center"
               >

@@ -16,8 +16,8 @@ const banks = [
 ];
 
 export function BanksSection() {
-  // Duplicamos a lista para criar o efeito infinito sem quebra
-  const marqueeBanks = [...banks, ...banks, ...banks, ...banks];
+  // Exatamente 2 cópias: -50% = 1 set completo → loop perfeito
+  const marqueeBanks = [...banks, ...banks];
 
   return (
     <section className="py-16 sm:py-20 md:py-24 bg-[#070b10] relative w-full">
@@ -35,28 +35,32 @@ export function BanksSection() {
           alt="Melhores Taxas ST Energia"
           className="block md:hidden w-full h-full object-cover object-center opacity-80"
         />
-        {/* Overlay escuro para consistência de cor (SEM blur para preservar 100% da resolução da foto) */}
+        {/* Overlay escuro para consistência de cor */}
         <div className="absolute inset-0 bg-black/80 md:bg-black/50" />
-
 
         {/* Smooth fades at borders to blend perfectly com outras seções (#040608) */}
         <div className="absolute top-0 left-0 w-full h-16 md:h-24 bg-gradient-to-b from-[#040608] to-transparent pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-full h-16 md:h-24 bg-gradient-to-t from-[#040608] to-transparent pointer-events-none" />
       </div>
 
-      {/* Estilo para animação infinita do marquee */}
+      {/* Animação marquee com GPU acceleration */}
       <style>{`
-        @keyframes scroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
+        @keyframes marquee-scroll {
+          0% { transform: translate3d(0, 0, 0); }
+          100% { transform: translate3d(-50%, 0, 0); }
         }
-        .animate-marquee {
+        .marquee-track {
           display: flex;
-          width: max-content;
-          animation: scroll 28s linear infinite;
+          will-change: transform;
+          animation: marquee-scroll 20s linear infinite;
+        }
+        @media (min-width: 768px) {
+          .marquee-track {
+            animation-duration: 28s;
+          }
         }
         @media (hover: hover) and (pointer: fine) {
-          .animate-marquee:hover {
+          .marquee-track:hover {
             animation-play-state: paused;
           }
         }
@@ -69,40 +73,40 @@ export function BanksSection() {
         <div className="relative max-w-4xl mx-auto text-center">
           {/* Fundo radial escurecido super sutil apenas atrás do texto para leitura */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[180%] bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.8)_0%,rgba(0,0,0,0.4)_40%,transparent_70%)] pointer-events-none -z-10 blur-md"></div>
-          
+
           <span className="text-primary font-bold text-xs sm:text-sm tracking-widest uppercase mb-4 block drop-shadow-md">
             Parceiros de Financiamento
           </span>
-          
+
           <h2 className="font-heading font-black text-3xl sm:text-4xl md:text-5xl text-white mb-6 drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)]">
             As Melhores Taxas do <span className="text-gradient-orange">Mercado</span>
           </h2>
-          
+
           <p className="text-zinc-100 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-medium drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
             Trabalhamos com os principais bancos para garantir condições exclusivas, prazos estendidos e carência imperdível na hora de financiar o seu projeto de energia solar.
           </p>
         </div>
       </div>
 
-      {/* Faixa Marquee Limitada ao Container com Efeito de Parede */}
+      {/* Faixa Marquee com loop infinito perfeito */}
       <div className="container mx-auto px-4 relative z-10">
         <div
-          className="relative w-full py-4 overflow-hidden flex items-center h-[160px] sm:h-[180px]"
+          className="relative w-full overflow-hidden flex items-center h-[140px] sm:h-[160px] md:h-[180px]"
           style={{
-            maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)',
-            WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)'
+            maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
+            WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)'
           }}
         >
-          <div className="animate-marquee items-center gap-12 sm:gap-20 md:gap-32 px-10">
+          <div className="marquee-track">
             {marqueeBanks.map((bank, index) => (
               <div
                 key={`${bank.id}-${index}`}
-                className="flex items-center justify-center transition-all duration-300 hover:scale-105 cursor-pointer flex-shrink-0 group"
+                className="flex items-center justify-center flex-shrink-0 w-[200px] sm:w-[260px] md:w-[320px] lg:w-[360px] px-4 sm:px-6 md:px-8"
               >
                 <img
                   src={bank.src}
                   alt={bank.alt}
-                  className="h-24 sm:h-28 md:h-32 lg:h-36 w-auto object-contain max-w-[280px] sm:max-w-[320px] md:max-w-[360px] lg:max-w-[400px] drop-shadow-[0_4px_12px_rgba(0,0,0,0.7)] z-10 relative"
+                  className="h-20 sm:h-24 md:h-32 lg:h-36 w-auto object-contain max-w-full drop-shadow-[0_4px_12px_rgba(0,0,0,0.7)]"
                 />
               </div>
             ))}
