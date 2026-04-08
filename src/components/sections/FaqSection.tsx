@@ -76,7 +76,7 @@ export function FaqSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ delay: index * 0.07, duration: 0.35 }}
-                className={`border rounded-xl overflow-hidden transition-all duration-300 ${isOpen ? 'border-primary shadow-[0_0_15px_rgba(249,115,22,0.12)] bg-[#111a22]/95 md:bg-card/85 md:backdrop-blur-sm' : 'border-border/50 bg-[#0c1318]/90 md:bg-card/40 md:backdrop-blur-sm hover:border-primary/50 hover:bg-[#111a22]'}`}
+                className={`border rounded-xl overflow-hidden transition-colors duration-300 ${isOpen ? 'border-primary shadow-[0_0_15px_rgba(249,115,22,0.12)] bg-[#111a22]/95 md:bg-card/85 md:backdrop-blur-sm' : 'border-border/50 bg-[#0c1318]/90 md:bg-card/40 md:backdrop-blur-sm hover:border-primary/50 hover:bg-[#111a22]'}`}
               >
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : index)}
@@ -91,21 +91,15 @@ export function FaqSection() {
                   />
                 </button>
                 
-                <AnimatePresence>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                      style={{ overflow: 'hidden' }}
-                    >
-                      <div className="p-6 pt-0 border-t border-border/20 mt-2 text-zinc-300 leading-relaxed font-medium">
-                        {faq.resposta}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                <div 
+                  className={`grid transition-[grid-template-rows,opacity] duration-300 ease-in-out ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}
+                >
+                  <div className="overflow-hidden">
+                    <div className="p-6 pt-0 border-t border-border/20 mt-2 text-zinc-300 leading-relaxed font-medium">
+                      {faq.resposta}
+                    </div>
+                  </div>
+                </div>
               </motion.div>
             )
           })}
