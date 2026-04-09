@@ -50,7 +50,7 @@ export function Navbar() {
             initial={{ opacity: 0, x: -15 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -15 }}
-            className="fixed inset-0 z-40 bg-background/98 flex flex-col items-center justify-center pt-20"
+            className="fixed inset-0 z-40 bg-[#040608]/95 backdrop-blur-lg flex flex-col items-center justify-center pt-20"
           >
             <nav className="flex flex-col items-center gap-8 text-xl">
               <a href="#sobre" onClick={() => setMobileMenu(false)} className="text-foreground hover:text-primary font-bold">Sobre Nós</a>
