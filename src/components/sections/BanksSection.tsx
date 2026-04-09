@@ -5,8 +5,6 @@ import bank2 from '../../assets/2.png'
 import bank3 from '../../assets/3.png'
 import bank4 from '../../assets/4.png'
 import bank5 from '../../assets/5.png'
-import bgBanks from '../../assets/IMAGEM FUNDO 12.jpg'
-import bgBanksMobile from '../../assets/imagem taxas mobile.jpg'
 const banks = [
   { id: 1, src: bank1, alt: 'Santander' },
   { id: 2, src: bank2, alt: 'Sicredi' },
@@ -20,23 +18,20 @@ export function BanksSection() {
   const marqueeBanks = [...banks, ...banks];
 
   return (
-    <section className="py-16 sm:py-20 md:py-24 bg-[#070b10] relative w-full" id="parceiros">
-      {/* Background Image with Dark Overlay and Section Smoothing Fades */}
+    <section className="py-16 sm:py-20 md:py-24 bg-[#040608] relative w-full" id="parceiros">
+      {/* Dark background and Tech Grid Texture */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        {/* Desktop Image */}
-        <img
-          src={bgBanks}
-          alt="Melhores Taxas ST Energia"
-          className="hidden md:block w-full h-full object-cover object-center opacity-80"
+        {/* Subtle Tech Grid Texture */}
+        <div 
+          className="absolute inset-0 bg-[linear-gradient(to_right,#80808015_1px,transparent_1px),linear-gradient(to_bottom,#80808015_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" 
+          style={{ 
+            maskImage: 'linear-gradient(to bottom, transparent, black 20%, black 80%, transparent)', 
+            WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 20%, black 80%, transparent)' 
+          }} 
         />
-        {/* Mobile Image */}
-        <img
-          src={bgBanksMobile}
-          alt="Melhores Taxas ST Energia"
-          className="block md:hidden w-full h-full object-cover object-center opacity-80"
-        />
-        {/* Overlay escuro para consistência de cor */}
-        <div className="absolute inset-0 bg-black/80 md:bg-black/50" />
+        
+        {/* Glow Central Sutil */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[800px] h-[300px] bg-primary/5 blur-[80px] rounded-[100%] pointer-events-none" />
 
         {/* Smooth fades at borders to blend perfectly com outras seções (#040608) */}
         <div className="absolute top-0 left-0 w-full h-16 md:h-24 bg-gradient-to-b from-[#040608] to-transparent pointer-events-none" />
@@ -66,8 +61,6 @@ export function BanksSection() {
         }
       `}</style>
 
-      {/* Glow Suave super sutil */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[1000px] h-[500px] bg-primary/5 blur-[60px] md:blur-[120px] rounded-[100%] pointer-events-none z-0" />
 
       <div className="container mx-auto px-4 relative z-10 w-full mb-12 sm:mb-16">
         <div className="relative max-w-4xl mx-auto text-center">

@@ -12,6 +12,7 @@ import { SustainabilitySection } from './components/sections/SustainabilitySecti
 import { Footer } from './components/Footer'
 import { useScrollAnimation } from './hooks/useScrollAnimation'
 import { Helmet } from 'react-helmet-async'
+import { WhatsAppFloat } from './components/ui/WhatsAppFloat'
 
 function App() {
   useScrollAnimation();
@@ -56,9 +57,11 @@ function App() {
         {/* 9 - CTA Magnet (Banner vibrante) */}
         <ContactSection />
       </main>
-      
       {/* 10 - Rodapé */}
       <Footer />
+
+      {/* Floating WhatsApp Button */}
+      <WhatsAppFloat />
     </div>
   )
 }

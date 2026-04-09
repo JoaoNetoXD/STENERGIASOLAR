@@ -170,7 +170,7 @@ export function ExperienceSection() {
             </div>
 
             <div className="flex items-center justify-center sm:justify-start gap-6">
-              <a href="https://wa.me/5598999999999?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20falar%20com%20um%20consultor." target="_blank" rel="noreferrer" className="w-full sm:w-auto">
+              <a href="https://wa.me/558630250140?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20falar%20com%20um%20consultor." target="_blank" rel="noreferrer" className="w-full sm:w-auto">
                 <Button variant="primary" className="uppercase w-full sm:w-auto text-xs sm:text-sm tracking-widest px-6 sm:px-10 py-4 font-bold rounded-md animate-pulse-glow">
                   Falar com um Consultor
                 </Button>

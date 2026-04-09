@@ -255,7 +255,7 @@ export function SimulatorCard() {
             </div>
 
             <div className="flex flex-col gap-3 w-full">
-              <a href={`https://wa.me/5598999999999?text=Ol%C3%A1!%20Fiz%20uma%20simula%C3%A7%C3%A3o%20pelo%20site%20no%20nome%20de%20${formData.nome}%20com%20conta%20de%20${formData.valorConta}.%20Quero%20falar%20com%20um%20especialista.`} target="_blank" rel="noreferrer" className="w-full">
+              <a href={`https://wa.me/558630250140?text=Ol%C3%A1!%20Fiz%20uma%20simula%C3%A7%C3%A3o%20pelo%20site%20no%20nome%20de%20${formData.nome}%20com%20conta%20de%20${formData.valorConta}.%20Quero%20falar%20com%20um%20especialista.`} target="_blank" rel="noreferrer" className="w-full">
                 <Button variant="primary" className="w-full py-4 text-sm font-bold uppercase tracking-wide gap-2 bg-green-500 hover:bg-green-600 text-white shadow-[0_0_20px_rgba(34,197,94,0.4)]">
                    Acelerar Atendimento
                 </Button>
